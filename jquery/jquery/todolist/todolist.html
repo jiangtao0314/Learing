@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist-最简单的待办事项</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        body{
+            background-color: #999999;
+        }
+        header{
+            height: 50px;
+            width: 100%;
+            background-color: #333333;
+        }
+        header span{
+            color: white;
+            font-size: 25px;
+            line-height: 50px;
+        }
+        header div{
+            margin: 0 auto;
+            width: 30%;
+        }
+        header input{
+            float: right;
+            width: 60%;
+            height: 24px;
+            margin-top: 12px;
+            border-radius: 5px;
+        }
+        article h2{
+            height: 31px;
+            width: 600px;
+            margin: 20px auto;
+        }
+        article h2 span{
+            background-color: #fff;
+            height: 20px;
+            width: 20px;
+            font-size: 5px;
+            text-align: center;
+            line-height: 20px;
+            float: right;
+            margin-top: 5px;
+            border-radius: 50%;
+        }
+        footer{
+            text-align: center;
+            margin-top: 50px;
+        }
+        footer a{
+            text-decoration: none;
+            color: coral;
+        }
+        .addli li , .finishli li{
+            height: 31px;
+            width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 5px solid green;
+            position: relative;
+            margin-top: 10px;
+        }
+        .addli li input , .finishli li input{
+            height: 20px;
+            width: 20px;
+            margin-top: 5px;
+            margin-left: 5px;
+            float: left;
+        }
+        .addli li p , .finishli li p{
+            line-height: 31px;
+        }
+        .addli a, .finishli a {
+            float: right;
+            font-size: 10px;
+            position: absolute;
+            top: 0px;
+            right: 5px;
+            font-size: 25px;
+            text-decoration: none;
+            color: #333333;
+        }
+        ul li {
+            border-left: 5px solid #999;
+            opacity: 0.5;
+        }
+    </style>
+    <script src="jquery.min.js"></script>
+    <script src ="todolist.js"></script>
+</head>
+<body>
+    <header>
+        <div>
+            <span>ToDoList</span>
+            <input type="text" placeholder="添加ToDo" class = "inputtext">
+        </div>
+    </header>
+    <article>
+        <div>
+            <h2 class = 'todo'>正在进行 <span></span></h2>
+            <ol class = "addli">
+                <!-- <li> <input type="checkbox"> <p> 123456</p> <a href="javascript:;">-</a></li> -->
+            </ol>
+        </div>
+        <div>
+            <h2 class = "done">已经完成 <span></span></h2>
+            <ul class = "finishli">
+                <!-- <li> <input type="checkbox"> <p> 123456</p>  <a href="javascript:;">-</a></li> -->
+            </ul>
+        </div>
+    </article>
+    <footer>
+        Copyright © 2014 todolist.cn
+        <a href="#">clear</a>
+    </footer>
+</body>
+</html>

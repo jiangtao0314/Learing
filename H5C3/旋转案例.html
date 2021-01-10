@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{
+            height: 150px;
+            width: 150px;
+            margin: 100px auto;
+            background-color: pink;
+            overflow: hidden;
+        }
+        .a::before{
+            content: '黑马';
+            display: block;
+            height: 100%;
+            width: 100%;
+            background-color:skyblue;
+            transform: rotate(180deg);
+            transform-origin: left bottom;
+            transition: all 0.5s;
+        }
+        .a:hover::before{
+            transform: rotate(0deg);
+        }
+
+        /* 不使用字体图标作三角形 */
+        .sanjiao{
+            height: 30px;
+            width: 200px;
+            border: 1px solid black;
+            margin-left: 200px;
+            position: relative;
+        }
+        .sanjiao span{
+            position: absolute;
+            height: 5px;
+            width: 5px;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            right: 10px;
+            top: 10px;
+            transform: rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+         
+    </div>
+    <div class="sanjiao">
+        <span></span>
+    </div>
+</body>
+</html>

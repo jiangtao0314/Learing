@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .all{
+            margin: 200px auto;
+            width: 136px;
+
+        }
+        .s{
+            height: 78px;
+            width: 66px;
+            background: url(images/timg.jpg) no-repeat -225px -366px;
+            float: left;
+        }
+        .b{
+            width: 70px;
+            height: 73px;
+            background: url(images/timg.jpg) no-repeat -109px -2px;
+            float: left;
+        }
+        .clearfix::before,.clearfix::after{
+            content: "";
+            display: table;
+        }
+        .clearfix::after{
+            clear: both;
+        }
+       .a{
+           height: 500px;
+           width: 1400px;
+           background-color: pink;
+       }
+    </style>
+</head>
+<body>
+    <div class="all clearfix">
+        <div class="s">
+
+        </div>
+        <div class="b">
+    
+        </div>
+    </div>
+   <div class="a">
+
+   </div>
+</body>
+</html>

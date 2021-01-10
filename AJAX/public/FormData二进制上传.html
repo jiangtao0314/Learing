@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css">
+    <style type="text/css">
+        .container {
+            padding-top: 60px;
+        }
+        
+        .padding {
+            padding: 5px 0 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label>请选择文件</label>
+            <input type="file" id="file">
+            <div class="padding" id="box">
+                <!--<img src="" class="img-rounded img-responsive">-->
+            </div>
+            <div class="progress">
+                <div class="progress-bar" style="width: 0%;" id="bar">0%</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var file = document.querySelector('#file');
+    var bar = document.querySelector('#bar')
+    var box = document.querySelector('#box')
+
+    file.addEventListener('change', function() {
+        var formData = new FormData();
+        formData.append('attrName', this.files[0])
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', 'http://localhost:27017/upload')
+        xhr.upload.onprogress = function(ev) {
+            var result = (ev.loaded / ev.total) * 100 + '%';
+            bar.style.width = result;
+            bar.innerHTML = result;
+        }
+        xhr.send(formData);
+
+        //监听服务器
+        xhr.addEventListener('load', function() {
+            if (xhr.status == 200) {
+                //将服务器端返回的数据显示在控制台
+                // console.log(xhr.responseText);
+                //拿到的是json字符串 要转换为字符串
+                var result = JSON.parse(xhr.responseText);
+                //动态创建img标签
+                var img = document.createElement('img');
+                img.src = result.path;
+                img.addEventListener('load', function() {
+                    //将图片插入到div
+                    box.appendChild(img)
+                })
+
+            }
+        })
+    })
+</script>
+
+</html>

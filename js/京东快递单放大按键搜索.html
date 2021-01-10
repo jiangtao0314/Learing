@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       .box{
+           position: relative;
+           width: 178px;
+           margin: 100px;
+       }
+       .max::before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 28px;
+            left: 18px;
+            border: 8px solid #000;
+            border-style: solid dashed dashed;
+            border-color: #fff transparent transparent;
+        }
+        .max{
+            position: absolute;
+            top: -40px;
+            width: 171px;
+            border: 1px solid black;
+            padding: 5px 0;
+            font-size: 18px;
+            line-height: 20px;
+            color: #333;
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class = "box">
+        <div class = "max"></div>
+        <input type="text" placeholder = "请输入您的快递单号" class = "jd">
+    </div>
+    <script>
+       var input = document.querySelector('input');
+       var max = document.querySelector('.max');
+       var jd_input = document.querySelector('.jd');
+       document.addEventListener('keyup',function(e) {
+           console.log(e.keyCode);
+           if(e.keyCode === 78){
+               jd_input.focus();
+           }
+       })
+       jd_input.addEventListener('keyup',function(e){
+        if(this.value == ''){
+            max.style.display = 'none';
+        }else{
+            max.style.display = 'block'
+            max.innerHTML = this.value;
+        }
+       })
+       jd_input.addEventListener('blur',function(e){
+           max.style.display = 'none';
+           max.innerHTML = '';
+       })
+       jd_input.addEventListener('focus',function(e) {
+           if(this.value !== ''){
+            max.style.display = 'block';
+           }
+       })
+    </script>
+</body>
+
+</html>

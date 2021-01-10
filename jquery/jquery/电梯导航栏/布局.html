@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <script src="index.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+            width: 70px;
+            font-size: 14px;
+            text-align: center;
+            padding-top: 8px;
+        }
+        a{
+            text-decoration: none;
+        }
+        header{
+            height: 600px;
+            width: 60%;
+            margin: 0 auto;
+            background-color: pink;
+        }
+        article{
+            position: relative;
+        }
+        nav{
+            position: fixed;
+            background-color: skyblue;
+            height: 150px;
+            width: 70px;
+            left: 70px;
+            top: 350px;
+           display: none;
+        }
+        div{
+            width: 60%;
+            height: 500px;
+            margin: 20px auto;
+        }
+        .diva{
+            background-color: red;
+        }
+        .divb{
+            background-color: #999999;
+        }
+        .divc{
+            background-color: green;
+        }
+        .divd{
+            background-color: yellow;
+        }
+        .current{
+            background-color: purple;
+            
+        }
+        .current a {
+            color: white;
+        }
+        footer{
+            height: 600px;
+            width: 60%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+    <article>
+        <nav> 
+            <ul>
+                <li  class = "current"><a href="javascript:;">1</a></li>
+                <li><a href="javascript:;">2</a></li>
+                <li><a href="javascript:;">3</a></li>
+                <li><a href="javascript:;">4</a></li>
+                <li><a href="javascript:;">返回顶部</a></li>
+            </ul>
+        </nav>
+        <div class="diva"></div>
+        <div class="divb"></div>
+        <div class="divc"></div>
+        <div class="divd"></div>
+    </article>
+    <footer>
+
+    </footer>
+</body>
+</html>

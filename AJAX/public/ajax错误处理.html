@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id = "btn">发送ajax请求</button>
+</body>
+    <script>
+        let btn = document.querySelector('#btn');
+
+        btn.addEventListener('click',()=>{
+            var xhr = new XMLHttpRequest();
+            xhr.open('get',`http://localhost:3000/error`);
+            xhr.send();
+            xhr.addEventListener('load',()=>{
+                if(xhr.status == 400){
+                    console.log('请求出错');
+                }
+                console.log(xhr.responseText);
+            })
+        })
+    </script>
+</html>

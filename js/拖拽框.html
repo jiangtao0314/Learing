@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .alertlogin{
+            text-align: center;
+            font-size: 30px;
+            cursor:pointer;
+        }
+        .login{
+            position: fixed;
+            top:50%;
+            left:50%;
+            height: 300px;
+            width: 500px;
+            border: 1px solid black;
+            display: none;
+            background-color: #fff;
+            transform: translate(-50%, -50%);
+        }
+        .close{
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            height: 40px;
+            width: 40px;
+            border: 1px solid black;
+            border-radius: 50%;
+
+            background-color:white;
+            text-align: center;
+            line-height: 40px;
+            cursor:pointer;
+        }
+        .loginvip{
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+            cursor:move;
+        }
+        .users{
+            font-size: 15px;
+            line-height: 60px;
+        }
+       div input{
+            height: 20px;
+            width: 350px;
+        }
+        .users div{
+            margin-right: 30px;
+            margin-top: 20px;
+            text-align: right;
+        }
+        .loging{
+            height: 30px;
+            width: 70px;
+            display: block;
+            margin: 15px auto 0;
+            background-color: #fff;
+        }
+    </style>
+</head>
+    
+<body>
+        <div class="alertlogin">
+            点击弹出登录框
+        </div>
+       <div class="login">
+           <div class="loginvip">登录会员</div>
+           <div class="users">
+               <form>
+                <div> 用户名：<input type="text"></div>
+               <div>密码：<input type="password"></div>
+               <input type="submit" value = "确认登录" class = "loging">
+           </form></div>
+           
+            <div class="close">
+                关闭
+            </div>
+       </div>
+    <script>
+        var moves = document.querySelector('.loginvip');
+        var closes = document.querySelector('.close');
+        var body = document.body;
+        var alertlogin = document.querySelector('.alertlogin');
+        var login = document.querySelector('.login');
+
+        alertlogin.addEventListener('click',function(){
+            login.style.display = 'block';
+            body.style.backgroundColor = '#999999';
+        });
+        closes.addEventListener('click',function(){
+            login.style.display = 'none';
+            body.style.backgroundColor = '#ffffff';
+        });
+        moves.addEventListener('selectstart',function(e){
+            e.preventDefault();
+        })
+        moves.addEventListener('mousedown',function(e){
+            var x = e.pageX - login.offsetLeft;
+            var y = e.pageY - login.offsetTop;
+            //先获取的是鼠标在盒子内的坐标
+            function move(e){
+                login.style.left = e.pageX - x + 'px';
+                login.style.top = e.pageY - y +'px';
+            };
+                //用鼠标距离浏览器的坐标减去鼠标在盒子内的坐标得到盒子距离浏览器边框的坐标)
+           document.addEventListener('mousemove',move);
+           document.addEventListener('mouseup',function(e){
+               document.removeEventListener('mousemove',move)
+               //移除移动事件
+               //拖动要用document 用盒子事件的话鼠标只能在盒子内才能移动 无法拖动
+           })
+        });
+    </script>
+</body>
+
+</html>

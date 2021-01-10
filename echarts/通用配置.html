@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/bmap.min.js"></script>
+    <style>
+        .zhu {
+            height: 400px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zhu"></div>
+</body>
+<script>
+    let mCharts = echarts.init(document.querySelector('.zhu'))
+    let option = {
+        title: { //title配置
+            text: '语文成绩展示',
+            textStyle: {
+                color: 'red',
+            },
+            borderWidth: 5, //标题边框
+            borderColor: 'blue',
+            borderRadius: 5,
+            left: 40, //标题位置
+            top: 15,
+        },
+        tooltip: {
+            // trigger: 'item', //鼠标移动到表格上提示成绩  触发类型
+            trigger: 'axis', //只要鼠标在y的坐标轴上 就可以显示成绩
+
+            triggerOn: 'click', //点击才会出现提示框
+            // formatter: '{b} 的成绩是 {c} {a}' //自定义提示框信息 {a} 为series的name {b为xaxis的data} {c为series的data}
+            formatter: function(arg) {
+                console.log(arg); //formatter也可以定义回调函数 接受一个实参为当前点击柱状图的数据
+                return arg[0].name
+            }
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}, //将表单保存为图片
+                dataView: {}, //切换原始数据视图  并可修改
+                restore: {}, //重置修改的数据 还原表单的数据
+                dataZoom: {}, //区域缩放
+                magicType: {
+                    type: ['bar', 'line'] //动态图标类型的切换8
+                }
+            }
+        },
+        xAxis: {
+            type: 'category', //类目轴
+            data: ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+        },
+        yAxis: {
+            type: 'value' //数值轴
+        },
+        legend: {
+            //用于筛选系列 配合series使用  legend中的data是一个数组  值需要和series数组中的name保持一致
+            data: ['语文', '数学']
+        },
+        series: [{
+            name: '语文',
+            data: [88, 92, 63, 77, 94, 80, 72, 86],
+            type: 'bar', //图表类型
+            showBackground: true, //是否显示背景颜色
+            // 柱状图背景颜色
+            backgroundStyle: {
+                color: 'rgba(220, 220, 220, 0.8)'
+            },
+            markPoint: { //标记最大值最小值
+                data: [{
+                    type: 'max',
+                    name: '最大值'
+                }, {
+                    type: 'min',
+                    name: '最小值'
+                }]
+            },
+            markLine: { //绘制平均值的线  
+                data: [{
+                    type: 'average',
+                    name: '平均值'
+                }]
+            },
+            label: {
+                show: true,
+
+            },
+            barWidth: '30%'
+        }, {
+            name: '数学',
+            data: [83, 12, 34, 67, 54, 84, 16, 68],
+            type: 'bar', //图表类型
+            markPoint: { //标记最大值最小值
+                data: [{
+                    type: 'max',
+                    name: '最大值'
+                }, {
+                    type: 'min',
+                    name: '最小值'
+                }]
+            },
+            markLine: { //绘制平均值的线  
+                data: [{
+                    type: 'average',
+                    name: '平均值'
+                }]
+            },
+            label: {
+                show: true,
+
+            },
+            barWidth: '30%'
+        }]
+    };
+    mCharts.setOption(option)
+</script>
+
+</html>

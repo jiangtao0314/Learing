@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/bmap.min.js"></script>
+    <style>
+        .zhu {
+            height: 400px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zhu"></div>
+</body>
+<script>
+    let month = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+    let xiaoliang = [3000, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600]
+    let xiaoliang2 = [3300, 1800, 970, 2000, 1800, 300, 2400, 300, 700, 1300, 700, 1600]
+    let mCharts = echarts.init(document.querySelector('.zhu'))
+    let option = {
+        xAxis: {
+            type: 'category',
+            data: month,
+            boundaryGap: false, //使第一个元素紧挨边缘
+        },
+        yAxis: {
+            type: 'value',
+            scale: true, //如数据相差接近 折线图Y轴从零开始会变得上下幅度很小  
+            //此时需要给Y轴添加scale:true 使他自动缩放  脱离0值比例
+        },
+        series: [{
+
+            name: '销量',
+            data: xiaoliang,
+            stack: 'all', //堆叠图
+            type: 'line', //图表类型
+            smooth: true, //平滑效果
+            lineStyle: {
+                color: 'black', //线条颜色
+                type: 'solid' //dotted 点线  solid 实线  dashed 虚线
+            },
+            areaStyle: {
+                color: 'pink'
+            }, //填充阴影
+
+            //标注区间
+            markArea: {
+                data: [
+                    [{
+                        xAxis: '一月'
+                    }, {
+                        xAxis: '二月'
+                    }],
+                    [{
+                        xAxis: '七月'
+                    }, {
+                        xAxis: '十月'
+                    }]
+                ]
+            },
+            label: {
+                show: true,
+
+            },
+            barWidth: '50%'
+        }, {
+
+            name: '销量2',
+            data: xiaoliang2,
+            stack: 'all', //堆叠图
+            type: 'line', //图表类型
+            smooth: true, //平滑效果
+            lineStyle: {
+                color: 'blue', //线条颜色
+                type: 'solid' //dotted 点线  solid 实线  dashed 虚线
+            },
+            areaStyle: {
+                color: 'blue'
+            }, //填充阴影
+            label: {
+                show: true,
+
+            },
+            barWidth: '50%'
+        }]
+    };
+    mCharts.setOption(option)
+</script>
+
+</html>

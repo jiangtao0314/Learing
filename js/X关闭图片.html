@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang = zh-cn>
+  <meta charset="UTF-8">
+    <head>
+        <style type = text/css>
+         .closeimg{
+           height: 300px;
+           width: 200px;
+           position: relative;
+           margin:400px auto;
+           display: block;
+         }
+         .closeimg div{
+           width: 20px;
+           height: 20px;
+           position: absolute;
+           left: -20px;
+           top: 0;
+           border:1px solid orange;
+           font-size: 10px;
+           text-align: center;
+         }
+      </style>
+        
+        <title>1</title>
+    </head>
+    <body>
+       <div class = "closeimg">
+         <img src="images/z.gif" alt="" id = "image">
+         <div id = "close">X</div>
+      </div> 
+      <script>
+            var closes = document.getElementById('close'); 
+            var all = document.querySelector('.closeimg');
+            closes.onclick = function(){
+              all.style.display = 'none';
+            }
+      </script>
+    </body>
+</html>

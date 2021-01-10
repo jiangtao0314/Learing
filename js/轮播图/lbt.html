@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        .top-img{
+            overflow: hidden;
+            position: relative;
+            height: 455px;
+            width: 721px;
+            margin-left:200px;
+            margin-top: 150px;
+            
+        }
+        .lbt{
+           
+            height: 455px;
+            width: 600%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .lbt li{
+            
+            float: left;
+        }
+        .btn{
+            position: absolute;
+            top: 90%;
+            left: 45%;
+        }
+        .btn ul li{
+            font-size: 20px;
+            display: inline;
+        }
+        .btn a:hover{
+            color: red;
+        }
+        .left-btn,.right-btn{
+            display: none;
+            background:rgba(179,179,179,0.5);
+            position: absolute;
+            top:50%;
+            font-size: 30px;
+            color: white;
+        }
+        .left-btn a,.right-btn a{
+            text-align: center;
+            color: white;
+        }
+        .left-btn a:hover,.right-btn a:hover{
+            color: red;
+        }
+        .right-btn{
+            right: 0;
+        }
+    </style>
+    <script src="lbt.js">
+
+    </script>
+</head>
+<body>
+    <div class="top-img">
+        <ul class = 'lbt'>
+            <li><a href="javascript:;"><img src="focus.jpg"  alt=""></a></li>
+            <li><a href="javascript:;"><img src="focus1.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="focus2.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="focus3.jpg" alt=""></a></li>
+            
+        </ul>
+        <div class="btn">
+            <ul class ='btn-ul'>
+                
+            </ul>
+        </div>
+        <div class="left-btn"><a href="javascript:;">&lt;</a></div>
+        <div class="right-btn"><a href="javascript:;">&gt;</a></div>
+    </div>
+</body>
+</html>

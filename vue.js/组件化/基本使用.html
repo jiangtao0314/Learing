@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta h> 
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用组件  里面添加变量无效 -->
+        <my-cpn>{{num}}</my-cpn>
+    </div>
+    <script>
+        // 创建函数构造器对象
+        let cpnC = Vue.extend({
+            template:`<div>${233}</div>`
+        })
+        // 注册组件
+        Vue.component('my-cpn',cpnC);
+
+        // vue管理#app
+        var app = new Vue({
+            el:'#app',
+            data:{
+                num:123
+            }
+        })
+    </script>
+</body>
+</html>

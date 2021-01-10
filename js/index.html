@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        body{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <button>
+        开关灯
+    </button>
+</body>
+<script>
+    var booleaner = false;
+    var body = document.body;
+    var deng = document.querySelector('button');
+    deng.addEventListener('click', function(){
+        if(booleaner == false){
+            body.style.backgroundColor = 'white';
+            booleaner = true;
+        }else if(booleaner == true){
+            body.style.backgroundColor = 'black';
+            booleaner = false;
+        }
+        
+
+    })
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //----------------------------------------------------------------------
+        //利用递归函数求1*2*3*...n的积
+        function fn(n){
+            if(n == 1){
+                return 1;
+            }
+            return n * fn(n-1);
+        }
+        console.log(fn(4));
+        //相当于 3*（fn(3-1)）   3 * 2 * fn(2-1)   3 * 2 * 1        
+        
+
+        //----------------------------------------------------------------------
+        //利用递归求斐波那契数列 1,1,2,3,5,8,13,21,34,55......n  第三个数等于前两个数相加
+        function fbnq(n){
+            if(n == 1 || n == 2){
+                return 1
+            }
+            return fbnq(n-1) + fbnq(n-2);                            //fbnq(5) + fbnq(4)
+        }                                                      //fbnq(4)+fbnq(3)  + fbnq(3) + fbnq(2)
+        console.log(fbnq(6));                         //fbnq(3) + fbnq(2) + fbnq(2) + fbnq(1) + fbnq(2) + fbnq(1) + fbnq(1) + fbnq(0) 
+                                                    //1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 0  = 8
+
+
+
+    </script>                                           
+</head>
+<body>
+    
+</body>
+</html>

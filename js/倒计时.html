@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div span{
+            background-color: black;
+            height: 30px;
+            width: 30px;
+            display:block;
+            margin-top: 130px;
+            float: left;
+            font-size: 20px;
+            color: blanchedalmond;
+            text-align: center;
+        }
+        div .hours{
+            margin-left:30px;
+            margin-right:2px;
+        }
+        div .minute{
+            margin-right:2px;
+        }
+        div{
+            margin:100px 300px;
+            height: 200px;
+            width: 150px;
+            border: 1px solid black;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class = "box">
+        <span class = 'hours'></span>
+        <span class = 'minute'></span>
+        <span class = "second"></span>
+    </div>
+    <script>
+        var box = document.querySelectorAll('span');
+        function time(){
+       var nowTime = +new Date();
+       var inputTime = +new Date('2020-6-27 22:30:00')
+       var dates = (inputTime - nowTime) / 1000;
+       var days = parseInt(dates/60/60/24);
+       days = days < 10 ? '0'+ days : days;
+       var hours = parseInt(dates/60/60%24);
+       hours = hours < 10 ? '0'+hours : hours;
+       var minute = parseInt(dates/60%60);
+       minute = minute < 10 ? '0'+minute : minute;
+       var s = parseInt(dates%60);
+       box[0].innerHTML = hours;
+       box[1].innerHTML = minute;
+       box[2].innerHTML = s;
+    }
+    time();
+    window.setInterval(time,1000);
+    
+    </script>
+</body>
+
+</html>

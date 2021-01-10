@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+    <script type="text/javascript" src="axios.js"></script>
+    <style>
+        .zhu {
+            height: 400px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zhu"></div>
+</body>
+<script>
+    let dataMax = [{
+        name: '易用性',
+        max: 100
+    }, {
+        name: '功能',
+        max: 100
+    }, {
+        name: '拍照',
+        max: 100
+    }, {
+        name: '跑分',
+        max: 100
+    }, {
+        name: '续航',
+        max: 100
+    }]
+    let phone = [{
+        name: '华为',
+        value: [96, 78, 97, 79, 91]
+    }, {
+        name: '小米',
+        value: [89, 87, 79, 99, 96]
+    }]
+    let mCharts = echarts.init(document.querySelector('.zhu'))
+    let option = {
+        radar: {
+            indicator: dataMax, //设置属性最大值
+            shape: 'circle' //配置雷达图最外层的图形展示 circle 原型  polygon 多边形
+        },
+        series: [{
+            type: 'radar', //设置图表属性
+            data: phone, //绑定属性
+
+            areaStyle: {}, //将每个产品的雷达图形成阴影
+
+            label: { //设置显示数值
+                show: true,
+            }
+        }]
+    };
+    mCharts.setOption(option)
+</script>
+
+</html>

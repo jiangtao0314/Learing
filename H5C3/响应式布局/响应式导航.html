@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <style>
+       
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        .container{
+            width: 750px;
+            margin: 0 auto;
+        }
+        .container ul li{
+            float: left;
+            width: 93.75px;
+            height: 30px;
+            background-color: pink;
+        }
+        @media screen and (max-width: 767px){
+            .container{
+                width: 100%;
+            }
+            .container ul li{
+                width: 33.3%;
+            }
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>导航1</li>
+                <li>导航2</li>
+                <li>导航3</li>
+                <li>导航4</li>
+                <li>导航5</li>
+                <li>导航6</li>
+                <li>导航7</li>
+                <li>导航8</li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

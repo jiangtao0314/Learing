@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/template-web.js"></script>
+    <style>
+        .qqq {
+            color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"></div>
+    <script id="tql" type="text/html">
+        <h1 class="qqq">
+            {{name}} {{age}}
+        </h1>
+    </script>
+</body>
+<script>
+    var html = template('tql', {
+        name: '张三',
+        age: 18
+    });
+
+    document.querySelector('.container').innerHTML = html;
+</script>
+
+</html>

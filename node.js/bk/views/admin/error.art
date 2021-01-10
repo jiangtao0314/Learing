@@ -1,0 +1,9 @@
+{{extend './common/layout.art'}}
+{{block 'main'}}
+    <p style="color:pink">{{msg}}</p>
+{{/block}}
+{{block 'script'}}
+    setTimeout(function(e) {
+    location.href = '/admin/login'
+},3000)
+{{/block}}

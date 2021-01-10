@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var obj ={
+            id: 1,
+            name: 'andy',
+            msg:{
+                age:18,
+            },
+            color:['pink','red']
+        };
+        //------------------------------------------------
+        //浅拷贝
+        // var o = {}
+        // for(var k in obj){
+        //     o[k] = obj[k]
+        // }
+        // console.log(o);
+        // console.log('-----------------------------------------------');
+        //------------------------------------------------
+        //深拷贝
+        var s = {}
+        function deepCopy(newobj,oldobj){
+            for(var k in oldobj){  //遍历对象
+                var item = oldobj[k]  // 获取属性值 赋值给item 
+                if(item instanceof Array){   //判断是否是数组
+                    newobj[k] = [];         // 是数组吧名字复制  并且内容为空
+                    deepCopy(newobj[k],item)  //递归函数  把名字和数组重新传回执行
+                }else if(item instanceof Object){  
+                    newobj[k] = {};
+                    deepCopy(newobj[k],item)
+                }else{
+                    newobj[k] = item;     //给新对象名字并且赋值  
+                }
+            }
+        }
+        deepCopy(s,obj)
+        console.log(s);
+        s.msg.age = 20;
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

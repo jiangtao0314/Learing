@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- 只能替换没有名字的插槽 -->
+        <cpn>233</cpn>
+        <!-- 对有名字的插槽精准替换 -->
+        <cpn><button slot="center">替换按钮</button></cpn>
+        <!-- 父组件实例子组件时获取子组件的变量 -->
+        <cpn>
+            <!-- 在2.5.X以上使用时需要加一层div包裹 -->
+            <div slot-scope="slots"  slot="center">
+                <h2>{{slots.datase}}</h2>
+            </div>
+        </cpn>
+    </div>
+    <template id = "aaa">
+        <div>
+            <!-- 定义插槽名 -->
+            <slot name = "left">左</slot>
+            
+            <!-- ：data为自定义变量名  message为要传递到父元素的变量 -->
+            <slot name = "center" :datase = "message">中</slot>
+            <slot name = "right">右</slot>
+        </div>
+    </template>
+    <script>
+        const cpn = Vue.extend({
+            template:'#aaa',
+            data() {
+                return {
+                    message:'aaaaaaaaaaa'
+                }
+            },
+        })
+
+        const app = new Vue({
+            el:'.app',
+            data: {
+                
+            },
+            components:{    
+                cpn
+            }
+        })
+    </script>
+</body>
+</html>

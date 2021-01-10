@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //客户端需要将函数名称传递到服务器端
+        function fn(data) {
+            console.log('客户端的fn函数被调用了');
+            console.log(data);
+        }
+    </script>
+    <!-- 服务器端返回了函数的调用 相当于fn() -->
+    <script src="http://localhost:3000/better?callback=fn"></script>
+</body>
+
+</html>

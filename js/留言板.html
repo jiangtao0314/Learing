@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .pl{
+            width: 500px;
+            height: 200px;
+            position: relative;
+        }
+        .pl textarea{
+            border: 1px solid pink;
+            height: 200px;
+            width: 400px;
+            margin: 30px;
+        }
+        .pl button{
+            position:absolute;
+            right: 10px;
+            top: 90px;
+        }
+        .comment{
+            width: 300px;
+            margin-top: 70px;
+        }
+        .comment li{
+            background-color: pink;
+            margin: 10px;   
+            padding: 20px;  /* 最低输出上下20px*/
+            position:relative;
+        }
+        .comment li a{
+        position: absolute;
+        right: 5px;
+        text-decoration: none;
+        font-size: 10px;
+        }
+        
+    </style>
+</head>
+
+<body>
+  <div class="pl">
+     <textarea name="" id="" cols="30" rows="10"></textarea>
+      <button>发布</button>
+  </div>
+    <ul class = 'comment'>
+        
+    </ul> 
+    <script>
+        var comment = document.querySelector('.comment');
+        var pl = document.querySelector('.pl');
+        var textarea = pl.children[0];
+        var button = pl.children[1];
+        
+        button.onclick = function(){
+            var li = document.createElement('li');
+            comment.insertBefore(li,comment.children[0]);
+            li.innerHTML = textarea.value + "<a href = 'javascript:;'>删除</a>"; //
+            var deletes = document.querySelectorAll('a');
+            console.log(deletes);
+            
+            for(var i = 0 ;i < deletes.length; i++){
+                //相当于  
+                // deletes[0].onclick = function(){
+                // comment.removeChild(this.parentNode);
+                // deletes[1].onclick = function(){
+                // comment.removeChild(this.parentNode);
+                // deletes[2].onclick = function(){
+                // comment.removeChild(this.parentNode);
+                // deletes[3].onclick = function(){
+                // comment.removeChild(this.parentNode);
+            deletes[i].onclick = function(){
+                comment.removeChild(this.parentNode);
+                //放在外面的话不点发布的时候deletes已经运行过了
+            }  
+        }
+       }
+    </script>
+</body>
+
+</html>

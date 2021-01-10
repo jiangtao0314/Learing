@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        table{
+            border-collapse: collapse;
+            margin: 100px auto;
+        }
+        thead tr td{
+            background-color: #999999;
+            font-size: 15px;
+            width: 100px;
+            text-align: center;
+            border: 1px  solid black;
+        }
+        tbody tr td{
+            font-size: 15px;
+            width: 100px;
+            text-align: center;
+            border: 1px  solid black;
+        }
+    </style>
+</head>
+
+<body>
+        <table cellspacing="0" class="tbs">
+            <thead>
+                <tr>
+                    <td>姓名</td>
+                    <td>科目</td>
+                    <td>成绩</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody id = "tb">
+
+            </tbody>
+        </table>
+    <script>
+        var tb = document.getElementById('tb');
+        var dates = [{
+                name : '小明',
+                class : 'javaScript',
+                result : 100,
+            },
+            {
+                name : '小红',
+                class : 'javaScript',
+                result : 90,
+            },
+            {
+                name : '小刚',
+                class : 'javaScript',
+                result : 18,
+            },
+            {
+                name : '小丽',
+                class : 'javaScript',
+                result : 70,
+            },
+            {
+                name : '小松',
+                class : 'javaScript',
+                result : 80,
+            },
+        ];
+        for(var i = 0; i < dates.length; i++){
+            var tr = document.createElement('tr');
+            // 在每列创建数组个数的表格
+            tb.appendChild(tr);
+            //添加
+            for(var k in dates[i] ){
+                //遍历对象
+                var td = document.createElement('td');
+                tr.appendChild(td);
+                //创建添加TD
+                td.innerHTML = dates[i][k];
+                //把内容添加到TD内
+            }
+            var deltd = document.createElement('td');
+            tr.appendChild(deltd);
+            deltd.innerHTML = "<a href = 'javascript:;'>删除</a>"
+        }
+        var del = tb.querySelectorAll('a');
+        for(var j  = 0; j < del.length; j++){
+            //每一行都要添加鼠标事件要用for循环
+            del[j].onclick = function(){
+            tb.removeChild(this.parentNode.parentNode);
+            //node是写删除某元素的父级
+            }
+        }
+    </script>
+</body>
+
+</html>

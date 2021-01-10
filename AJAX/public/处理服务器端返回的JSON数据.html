@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>1234</h2>
+</body>
+    <script>
+        //创建ajax对象
+        const xhr = new XMLHttpRequest();
+        //告诉AJAX 请求方法 请求地址
+        xhr.open('get','http://localhost:3000/responseData')
+        //发送请求
+        xhr.send();
+        //获取服务端相应到客户端的数据
+        xhr.addEventListener('load',()=>{
+            var responseText = JSON.parse(xhr.responseText);
+            var str = '<h2>'+responseText.name+'</h2>';
+            document.body.innerHTML = str;
+        })
+    </script>
+</html>

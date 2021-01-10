@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+
+    </div>
+    <input type="file">
+    <script>
+        var div = document.querySelector('div')
+        var file = document.querySelector('input')
+        file.addEventListener('change', function() {
+            var reader = new FileReader();
+            reader.readAsText(this.files[0]);
+            reader.addEventListener('load', function() {
+                div.innerHTML = this.result;
+            })
+        })
+
+        //-------------------------------------------------
+        //图片读取
+        // file.addEventListener('change', function() {
+        //     var reader = new FileReader();
+        //     reader.readAsDataURL(this.files[0]);
+        //     reader.addEventListener('load', function() {
+        //         img.src = this.result;
+        //     })
+        // })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>视频播放</title>
+    <!--字体图标库-->
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link rel="stylesheet" href="css/player.css" />
+</head>
+
+<body>
+    <figure>
+        <figcaption>视频播放器</figcaption>
+        <div class="player">
+            <video src="./video/fun.mp4"></video>
+            <div class="controls">
+                <!--播放/暂停-->
+                <a href="javascript:;" class="switch fa fa-play"></a>
+                <!--播放进度-->
+                <div class="progress">
+                    <div class="line"></div>
+                    <div class="bar"></div>
+                </div>
+                <!--当前播放时间/播放总时长-->
+                <div class="timer">
+                    <span class="current">00:00:00</span> / <span class="total">00:00:00</span>
+                </div>
+                <!--全屏/取消全屏-->
+                <a href="javascript:;" class="expand fa fa-arrows-alt"></a>
+            </div>
+        </div>
+    </figure>
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        var video = document.querySelector('video');
+        var total = document.querySelector('.total');
+
+        function getVideoTime(videoTime) {
+            //video.duration 视频属性  获取视频的长度（以秒计）
+            var hour = Math.floor(videoTime / 3600)
+            var min = Math.floor(videoTime % 3600 / 60)
+            var s = Math.floor(videoTime % 60)
+            if (hour < 10) {
+                hour = '0' + hour;
+            }
+            if (min < 10) {
+                min = '0' + min;
+            }
+            if (s < 10) {
+                s = '0' + s
+            }
+            var time = `${hour}:${min}:${s}`;
+            return time
+        }
+
+
+        //浏览器可以播放视频的时候，就让video显示出来
+        video.addEventListener('canplay', function() {
+            video.style.display = 'block';
+            var videoTime = video.duration;
+            total.innerHTML = getVideoTime(videoTime);
+        })
+
+        //播放和暂停按钮
+        var videoPlay = document.querySelector('.switch');
+        videoPlay.addEventListener('click', function() {
+            if (videoPlay.classList.contains('fa-play')) {
+                videoPlay.classList.replace('fa-play', 'fa-pause')
+                video.play();
+            } else {
+                //暂停
+                video.pause();
+                videoPlay.classList.replace('fa-pause', 'fa-play')
+            }
+
+        })
+
+        //播放进度 timeuodate 方法 当播放进度发生改变时
+        //除了自己运行之外，只要修改了currentTime就会执行timeupdate
+        video.addEventListener('timeupdate', function() {
+            // video.currentTime  当前时间
+            //line盒子 宽度 = 当前时间 / 总的时间 * 100 + %
+            var lineWidth = video.currentTime / video.duration * 100 + '%'
+            var line = document.querySelector('.line');
+            line.style.width = lineWidth;
+            //显示当前事件
+            var nowTime = document.querySelector('.current');
+            nowTime.innerHTML = getVideoTime(video.currentTime);
+        })
+
+        //视频全屏 要把插件一起全屏
+        var full = document.querySelector('.player')
+        var videoFull = document.querySelector('.expand');
+        videoFull.addEventListener('click', function() {
+            console.log(1);
+            if (videoFull.classList.contains('fa-arrows-alt')) {
+                console.log(2);
+                videoFull.classList.replace('fa-arrows-alt', 'fa-compress')
+                full.webkitRequestFullScreen();
+            } else {
+                //暂停
+                console.log(3);
+                document.webkitCancelFullScreen();
+                videoFull.classList.replace('fa-compress', 'fa-arrows-alt')
+            }
+
+        })
+
+        //视频播放完毕 重置操作 ended事件
+        video.addEventListener('ended', function() {
+            //当前视频事件清零 播放按钮改为 play状态 
+            video.currentTime = 0;
+            videoPlay.classList.replace('fa-pause', 'fa-play')
+        })
+
+        //点击进度条（bar）跳跃效果
+        var bar = document.querySelector('.bar');
+        bar.addEventListener('click', function(e) {
+            //点击的位置 / bar的长度 * 总的时长 = 当前视频的播放位置(秒)
+            var offset = e.offsetX;
+            var current = offset / this.clientWidth * video.duration; //当前的时间
+
+            //把当前点击的播放位置赋值给currentTime
+            video.currentTime = current
+        })
+    </script>
+</body>
+
+</html>

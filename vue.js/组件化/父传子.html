@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- 在父元素使用V-bind绑定通讯变量 -->
+        <!-- 索取数据赋值后  使用数据渲染子组件模板 -->
+        <cpn v-bind:cmovies="movies" v-bind:cmessages = "message"></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <p>{{cmovies}}</p>
+            <h2>{{cmessages}}</h2>
+        </div>
+    </template>
+
+    <script>
+        const cpn = {
+            template:'#cpn',
+            // 使用props让父元素向子元素传递信息
+            // props:['cmovies','cmessages'],
+            props:{  //声明数据
+                //传递信息的同时还可以对数据类型限制
+                // cmoves:Array,
+                // cmessage:String,
+
+
+                // 2提供默认值  如果类型是一个数组或对象时  默认值必须是一个函数
+                // cmessage:{
+                //     type:String,
+                //     default:'aaaaa'
+                    //必填项
+                //     required:true
+                // }
+
+
+                    cmovies:{
+                    type:Array,
+                    default(){
+                        return[];
+                    },
+                    required:true
+                }
+            },
+            data(){
+                return{
+
+                }
+            }
+        }
+
+        var app = new Vue({
+             el:'.app',
+             data:{
+                message:'1233',
+                movies:['海王','蝙蝠侠','闪电侠']
+             },
+            //  设置子元素使用标签和内容
+             components:{
+                //  es6语法 cpn:cpn
+                 cpn
+             }
+        })
+    </script>
+</body> 
+</html>

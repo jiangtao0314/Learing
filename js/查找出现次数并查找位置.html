@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang = zh-cn>
+  <meta charset="UTF-8">
+    <head>
+        <style type = text/css></style>
+        <script>
+           function returnStr(str){
+            var j = 0;
+            var input = str.indexOf('o');
+            while(input !== -1){
+               console.log(input);
+               input = str.indexOf('o' , input + 1);
+               j++;
+            }
+            console.log(j);
+            
+           }
+           returnStr('abcoefoxyozzopp');
+        </script>
+        <title>1</title>
+    </head>
+    <body>
+        
+    </body>
+</html>

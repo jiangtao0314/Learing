@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{data.name}}
+    {{data.age}}
+
+/---------------------------------------------
+/判断
+    {{if user.age >= 20}}
+    年龄大于20
+    {{/if}}
+
+    <%if(user.age >= 20) {%>
+    年龄大于20
+    <%}%>
+
+/------------------------------------------------
+/循环
+    {{each data}}
+        {{$value.name}}
+        {{$value.age}}
+
+
+
+        {{$index}}
+    {{/each}}
+/----------------------------------------------------
+    <% for (var i = 0; i < data.length; i++) { %>
+        <%=data[i].name %>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,212 @@
+*{
+    margin:0;
+    padding: 0;
+}
+img{
+    vertical-align: bottom;
+}
+body{
+    width: 100%;
+    max-width: 640px;
+    min-width: 320px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: white;
+    color: #666;
+    -webkit-tap-highlight-color: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: red;
+}
+.clearfix::before,.clearfix::after{
+    content: "";
+    display: table;
+}
+.clearfix::after{
+    clear: both;
+}
+.app{
+    height: 50px;
+    width: 100%;
+    background-color: #333333;
+    color: white;
+}
+.close{
+    background: url(../images/close.png) no-repeat;
+    background-position: center;
+    background-size: 10px ;
+    margin: auto;
+    height: 100%;
+    width: 8%;
+    box-sizing: border-box;
+    float: left;
+}
+.headimg{
+    width: 10%;
+    height: 100%;
+    background: url(../images/logo.png) no-repeat;
+    background-size: 30px ;
+    float: left;
+    background-position: center;
+}
+.header-body{
+    width: 57%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    line-height: 45px;
+}
+.dowload{
+    width: 25%;
+    height: 100%;
+    background-color: red;
+    float: left;
+    text-align: center;
+    line-height: 45px;
+}
+.search{
+    height: 44px;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    max-width: 640px; 
+    min-width: 320px;
+    z-index: 10;
+}
+.search-l{
+    height: 44px;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../images/s-btn.png) no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+.search-r{
+    height: 44px;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    text-align: center;
+    line-height: 44px;
+    color: white;
+}
+.search-c{
+    position: relative;
+    margin: 7px 50px 0;
+    height: 30px;
+    background-color: white;
+    border-radius: 10px;
+}
+.search-c::before{
+    content: "";
+    height: 30px;
+    width: 25px;
+    display: block;
+    background: url(../images/jd.png) no-repeat;
+    float: left;
+    margin-left: 5px;
+    background-size: 20px 15px;
+    background-position: center;
+}
+.searchimg::before{
+    content: "|";
+    position: absolute;
+    top: 0;
+    left: -8px;
+    width: 1px;
+    height: 15px;
+    line-height: 12px;
+}
+.searchimg{
+    position: absolute;
+    top: 8px;
+    left: 40px;
+    height: 15px;
+    width: 18px;
+    background: url(../images/jd-sprites.png) no-repeat -83px 0px;
+    background-size: 200px auto;
+}
+.slider{
+    position: relative;
+}
+.slider img{
+    width: 100%;
+}
+.slider ul {
+    height: 5px;
+    width: 16%;
+    position: absolute;
+    left: 50%;
+    top: 85%;
+    margin-left: -8%;
+    
+}
+.slider li{
+    float: left;
+}
+.slider ul .current{
+    color: red;
+}
+.brand a {
+    display: block;
+    width: 100%;
+}
+.brand{
+    overflow: hidden;
+    position: relative;
+    margin-top: -7px;
+    z-index: 2;
+    width: 100%;
+    border-radius: 10px 10px 0 0 ;
+}
+.brand img{
+    z-index: 2;
+    float: left;
+    width: 33.33%;
+}
+nav{
+    background-color: white;
+}
+nav ul{
+    width: 100%;
+}
+nav li a{
+    width: 20%;
+    float: left;
+    text-align: center;
+    
+}
+nav li a img{
+    display: block;
+    width: 40px;
+    margin: 10px auto;
+}
+nav b{
+    display: block;
+    font-weight: normal;
+}
+.news{
+    margin-top: 10px;
+}
+.news a{
+    float: left;
+    width: 50%;
+}
+.news :nth-child(n+2){
+    width: 25%;
+    border-left: 1px solid #999999;
+    box-sizing: border-box;
+}
+.news img{
+    width: 100%;
+}

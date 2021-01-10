@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./index.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .wrapper {
+            margin: 30px;
+            width: 375px;
+            padding: 15px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        
+        .inputbox {
+            position: relative;
+        }
+        
+        .inputbox input {
+            /* display: inline-block; */
+            width: 270px;
+            outline: none;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .inputbox span {
+            font-size: 30px;
+            position: absolute;
+            right: 2px;
+            top: 5px;
+            color: rgb(65, 238, 74);
+            display: none;
+        }
+        
+        .error {
+            display: none;
+            font-size: 8px;
+            margin-top: 15px;
+            color: red;
+            text-align: center;
+        }
+        
+        .canvasBox {
+            position: relative;
+            margin-top: 10px;
+            /* border: 1px solid black; */
+        }
+        
+        .imgbox {
+            width: 300px;
+            height: 80px;
+            background-color: pink;
+            /* border: 1px solid #cccccc; */
+            border-radius: 5px;
+        }
+        
+        .refresh {
+            position: absolute;
+            height: 30px;
+            width: 60px;
+            right: 3px;
+            top: 30%;
+        }
+        
+        .submit {
+            margin-top: 10px;
+            height: 30px;
+            width: 50px;
+            border-radius: 5px;
+            color: white;
+            background-color: black;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="inputbox">
+            <input type="text" placeholder="请输入验证码">
+            <span>√</span>
+        </div>
+        <p class="error">验证码输入错误</p>
+        <div class="canvasBox">
+            <div class="imgbox">
+                <canvas id="myCanvas" height=80 width=300>
+
+                </canvas>
+            </div>
+            <input type="button" class="refresh" value="刷新">
+        </div>
+        <button class="submit">提交</button>
+    </div>
+</body>
+
+</html>

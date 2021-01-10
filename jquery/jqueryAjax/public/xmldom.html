@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="btn">发送请求</button>
+    <script>
+        var btn = document.querySelector('.btn');
+        btn.addEventListener('click', function() {
+            var xhr = new XMLHttpRequest;
+            xhr.open('put', '/xml/1')
+            xhr.send();
+            xhr.addEventListener('load', function() {
+                var xhrDocument = xhr.responseXML;
+                console.log(xhrDocument.querySelector('sid').innerHTML);
+            })
+        })
+    </script>
+</body>
+
+</html>

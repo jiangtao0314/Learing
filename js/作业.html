@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang = zh-cn>
+  <meta charset="UTF-8">
+    <head>
+        <style type = text/css></style>
+        <script>
+            function getMax(str){
+               var newStr = str;
+               var o = {};
+               var max = 0;
+               var ch ='';
+               console.log('长度是' + str.length); //1.字符串的长度
+
+               console.log(str.substr(0,1));   // 2.取出指定位置的字符
+
+               if(str.indexOf('i') != -1){
+                  console.log('有i');
+               }else if(str.indexOf('c') != -1){
+                  console.log('有c');
+               }else if(str.indexOf('b') != -1){
+                  console.log('有b');             //3.查找字符串是否存在
+               }
+               
+               while(newStr.indexOf('g') != -1){
+                  newStr = newStr.replace('g','22');
+               }
+               while(newStr.indexOf('ss') != -1){
+                  newStr = newStr.replace('ss','b'); 
+               }
+               console.log(newStr);             //4.替换指定字符
+              
+
+              console.log(newStr.substr(1,newStr.length));
+              
+
+               for(var i = 0; i < str.length; i++){
+                  var chars = newStr.charAt(i);
+                  if(o[chars]){
+                     o[chars]++;
+                  }else{
+                     o[chars] = 1;    
+                  }
+               } 
+                  for(var k in o){
+                     if(o[k] > max){
+                        max = o[k];
+                        ch = k
+                     }
+                  }   
+                  console.log('最多的个数是'+max);
+                  console.log('最多的字符是'+ch);
+                  
+                                    
+            }
+            getMax('abaasdffggghhjjkkgfddsssss3444343');
+        </script>
+        <title>1</title>
+    </head>
+    <body>
+        
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model = "message">
+        <!-- 原理 让这个表单的VALUE数值一直等于 message  input事件为这个表单发生改变时 message等于这个表单更改后的数值 实现双向绑定 -->
+        <!-- <input type="text" :value = "message" @input="message = $event.target.value"> -->
+        <div>{{message}}</div>
+    </div>
+</body>
+<script>
+    var a = new Vue({
+        el:'#app',
+        data:{
+            message:'aaaaaaaaa'
+        }
+    })
+</script>
+</html>

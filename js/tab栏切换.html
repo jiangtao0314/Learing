@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style-type: none;
+        }
+        
+        .tab {
+            width: 978px;
+            margin: 100px auto;
+        }
+        
+        .tablist {
+            height: 39px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        
+        .tablist li {
+            float: left;
+            height: 39px;
+            line-height: 39px;
+            padding: 0 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .tablist .current {
+            background-color: #c81623;
+            color: #fff;
+        }
+        
+        .iteminfo {
+            padding: 20px 0 0 20px;
+        }
+        
+        .item {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab">
+        <div class="tablist">
+            <ul>
+                <li>商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价（50000）</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        
+    <script>
+       var tab = document.querySelector('.tablist');
+       var tabli = tab.querySelectorAll('li');
+       var items = document.querySelectorAll('.item');
+
+       for(var i = 0; i < tabli.length; i++){
+          tabli[i].setAttribute('index', i);
+          tabli[i].onclick = function(){
+            for(var j = 0; j < tabli.length; j++){
+              tabli[j].className = '';
+            }
+            this.className = 'current';  
+            var index = this.getAttribute('index');
+            for (var i = 0; i < items.length; i++) {
+                    items[i].style.display = 'none';
+                }
+                items[index].style.display = 'block';
+          }
+       }
+    </script>
+</body>
+
+</html>

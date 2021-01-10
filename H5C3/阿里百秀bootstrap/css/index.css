@@ -1,0 +1,202 @@
+@media screen and (min-width:1280px){
+    .container{
+        width: 1280px;
+    }
+}
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+p{
+    color: #cccccc;
+}
+ul p{
+    margin: 0;
+}
+img{
+    vertical-align: bottom;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+.row header{
+    padding-left: 0;
+}
+.logo{
+      background-color: skyblue;
+  }
+.logoxs{
+    width: 100%;
+    height: 50px;
+    background-color: skyblue;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    line-height: 50px;
+}
+.logo img{
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+  }
+@media screen and (max-width:991px){
+    .row header{
+        padding: 0;
+    }
+    .nav ul li{
+        padding: 10px 0 10px 30px;
+        float: left;
+        width: 20%;
+    }
+    article{
+        margin-top: 10px;
+    }
+}
+@media screen and (max-width:767px){
+    .nav ul li{
+        font-size: 14px;
+        padding: 10px 0 10px 10px;
+    }
+    
+    article .news ul li:nth-child(2n){
+        padding-right: 5px;
+        padding-left: 0;
+    }
+    article .news ul li:nth-child(2n+1){
+        padding-right: 0;
+        padding-left: 5px;
+    }
+    article .news ul>li:nth-child(n+2){
+        width: 50%;
+    }
+    article .news ul>li:first-child{
+        padding: 0!important;
+        width: 100%;
+    }
+    
+}
+.nav{
+    background-color: #eeeeee;
+    border-bottom: #cccccc;
+}
+.nav a:hover{
+    color: #666666;
+    background-color: #fff;
+}
+.nav a{
+    display: block;
+    color: #666666;
+}
+.nav li{
+    overflow: hidden;
+    font-size: 16px;
+    width: 100%;
+    padding: 10px 0 10px 40px;
+}
+.nav li::before{
+    padding-right: 5px;
+    vertical-align: middle;
+}
+.news li> a{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+.news li {
+    float: left;
+    width: 25%;
+    height: 128px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+.news ul>li:first-child{
+    width: 50%;
+    height: 266px;
+}
+.carousel,
+.carousel img {
+    width: 100%;
+    height: 266px!important;
+}
+.carousel-indicators{
+    text-align: center;
+    margin-left: -10%!important;
+}
+.news li a img{
+    width: 100%;
+    height: 100%;
+}
+.news ul li p{
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 41px;
+    background: rgba(0, 0, 0, .3);
+    font-size: 12px;
+    padding-left: 10px;
+    padding-top: 6px;
+}
+.news ul li:first-child p{
+    font-size: 20px;
+    line-height: 41px;
+    padding-top: 0;
+}
+.publish{
+    border-top: 1px solid #cccccc;
+}
+.pic{
+    margin-top: 10px;
+}
+.pic img{
+   height: 100%;
+   width: 100%;
+}
+.publish .row{
+    border-bottom: 1px solid #cccccc;
+    padding: 10px 0;
+}
+aside a{
+    display: block;
+}
+aside .banner img{
+    height: 100%;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.hot{
+    padding: 0 20px 20px 20px;
+    height: 200px;
+    border: 1px solid #cccccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+aside .hot {
+    position: relative;
+}
+.hot span{
+    padding: 0 5px;
+    color: white;
+    background-color: skyblue;
+    position: absolute;
+    top: 0;
+    left: 10%;
+}
+.hot h3{
+    padding-top: 50px;
+    
+}
+.hot p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

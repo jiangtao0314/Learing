@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/template-web.js"></script>
+    <script src="./js/jquery.min.js"></script>
+</head>
+
+<body>
+    <form class='form'>
+        <input type="text" name='username'>
+        <input type="text" name='password'>
+        <input type="submit" value="提交">
+    </form>
+    <button class="btn" id="btn">点击发送请求</button>
+    <script>
+        var btn = document.querySelector('.btn');
+        btn.addEventListener('click', function() {
+            $.ajax({
+                type: 'get',
+                url: '/base',
+                //在请求之前调用
+                beforeSend: function() {
+                    alert('请求即将发送');
+                    //请求不会被发送
+                    return false;
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(xhr) {
+                    console.log(xhr);
+                }
+            })
+        })
+
+        var form = document.querySelector('.form')
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            serializeObject($(this))
+            return false;
+        })
+
+        function serializeObject(obj) {
+            var objs = {}
+                //将对象转换为数组
+                //serializeArray{name: 'username',value:'用户输入的内容'},{name: 'password',value:'用户输入的内容'}
+            var params = obj.serializeArray();
+            params.forEach(function(values, index, array) {
+                objs[values.name] = values.value;
+                console.log(objs);
+            })
+        }
+    </script>
+</body>
+
+</html>

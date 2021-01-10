@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .w{
+            width: 1200px;
+            margin: 10px auto;
+        }
+        .head{
+            height:150px;
+            background-color: purple;
+        }
+        .banner{
+            height: 250px;
+            background-color: skyblue;
+        }
+        .last{
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+        .navigator{
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.addEventListener('load',function(){
+
+            var head = document.querySelector('.head');
+            var banner = document.querySelector('.banner');
+            var navigator = document.querySelector('.navigator');
+            var bannerTop = banner.offsetTop;   //滚动到banner盒子 侧边栏固定定位
+            var navigatorTop = navigator.offsetTop - bannerTop; //求出侧边栏到banner的距离
+
+            var goBack = document.querySelector('.goBack');
+            var last = document.querySelector('.last');
+            var lastTop = last.offsetTop;
+            //内容区到最上方的距离
+            console.log(bannerTop);
+            
+
+            document.addEventListener('scroll',function(){
+                if(window.pageYOffset >= bannerTop){
+                    navigator.style.position = 'fixed';
+                    navigator.style.top = navigatorTop + 'px';
+                    //如果滚动距离大于等于170，侧边栏盒子定位改为绝对定位和网页一起走
+                    //滚动到banner的时候就让绝对定位的高度等于 侧边栏到banner的距离
+                }else{
+                    navigator.style.position = 'absolute';
+                    navigator.style.top = '300px';
+                    //如果滚动距离小于170，就变换定位，改为之前的300px
+                }
+
+                if(window.pageYOffset >= lastTop){
+                    goBack.style.display = 'block';
+                }else{
+                    goBack.style.display = 'none';
+                }
+                //滚动到last盒子，显示 goback模块
+                
+
+                goBack.addEventListener('click', function() {
+                // 里面的x和y 不跟单位的 直接写数字即可
+                // window.scroll(0, 0);
+                // 因为是窗口滚动 所以对象是window
+                animate(window, 0);
+                });
+
+
+
+                function animate(obj,target,callback){
+                    clearInterval(obj.timer);
+                    obj.timer = setInterval(function(){
+                        var step = (target - window.pageYOffset)/10;
+                        step = step > 0 ? Math.ceil(step):Math.floor(step);
+                        if(target == window.pageYOffset){
+                        clearInterval(obj.timer);
+                    }
+
+                    window.scroll(0,window.pageYOffset + step);
+                    //window.pageYOffset是滚动到一定距离之后才会出现返回按钮
+                    },15);
+                    
+                }
+                
+
+
+            });
+
+            
+            
+            
+
+        });
+    </script>
+</head>
+<body>
+    <div class="head w">
+        
+    </div>
+    <div class="banner w">
+    </div>
+        <div class="navigator">
+                <span class="goBack">返回</span>
+        </div>
+    <div class="last w"></div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head> 
+        <meta charset="UTF-8">
+        <style type="text/css"></style>
+        <script>
+            function getDays(days){
+                var year = prompt('请输入年份')
+                if(getYears(year)){
+                    console.log('29天');
+                }else{
+                    console.log('28天'); 
+                }
+            }
+            getDays();
+            function getYears(years) { 
+               var flag = false;
+               if(years % 4 == 0 && years % 100 != 0 || years % 400 == 0){
+                   flag = true;
+               }
+               return flag;
+            }
+              
+            
+               
+        </script>  
+        <title>1111</title>
+    </head>
+    <body>
+        
+    </body>
+</html>

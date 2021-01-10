@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+    <script type="text/javascript" src="axios.js"></script>
+    <style>
+        .zhu {
+            height: 400px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zhu"></div>
+</body>
+<script>
+    let mCharts = echarts.init(document.querySelector('.zhu'))
+    let option = {
+        tooltip: {
+            trigger: 'item'
+        },
+        series: {
+            type: 'gauge',
+            data: [{
+                value: 97,
+                itemStyle: {
+                    color: 'pink',
+                }
+            }, {
+                value: 134 //多个指针
+            }],
+            min: 50, //控制仪表盘数值范围
+            max: 200, //最大范围
+        }
+    };
+    mCharts.setOption(option)
+</script>
+
+</html>

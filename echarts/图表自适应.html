@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+    <script type="text/javascript" src="axios.js"></script>
+    <style>
+        .zhu {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zhu"></div>
+</body>
+<script>
+    let mCharts = echarts.init(document.querySelector('.zhu'));
+    window.onresize = () => {
+        mCharts.resize()
+    }
+    let option = {
+        xAxis: {
+            type: 'category', //类目轴
+            data: ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+        },
+        yAxis: {
+            type: 'value' //数值轴
+        },
+        series: [{
+
+            name: '语文',
+            data: [88, 92, 63, 77, 94, 80, 72, 86],
+            type: 'bar', //图表类型
+            showBackground: true, //是否显示背景颜色
+            // 柱状图背景颜色
+            backgroundStyle: {
+                color: 'rgba(220, 220, 220, 0.8)'
+            },
+            markPoint: { //标记最大值最小值
+                data: [{
+                    type: 'max',
+                    name: '最大值'
+                }, {
+                    type: 'min',
+                    name: '最小值'
+                }]
+            },
+            markLine: { //绘制平均值的线  
+                data: [{
+                    type: 'average',
+                    name: '平均值'
+                }]
+            },
+            label: {
+                show: true,
+
+            },
+            barWidth: '50%'
+        }]
+    };
+    mCharts.setOption(option)
+</script>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener('load',function(){
+
+            //------------------------------------------------------------------
+            //使用闭包3秒后自动打印li全部内容
+            var lis = document.querySelectorAll('li');
+            console.log(lis);
+            for(var i = 0; i < lis.length; i++){
+                (function (i){
+                    setTimeout(function(){
+                        console.log(lis[i].innerHTML);
+                    },300)
+                })(i)        
+            }
+            //------------------------------------------------------------------
+            //利用闭包计算打车费用
+            //3km内 13  以上每1km 5   堵车10
+            
+            var car = (function (){
+                var start = 13;
+                var total = 0;
+                return{
+                    price:function(n){
+                        if(n <= 3){
+                            total = start;
+                        }else{
+                            total = (n - 3) * 5 + start;
+                        }
+                        return total;
+                    },
+                    yd:function(flag){
+                        return flag ? total + 10 : total; 
+                    }
+                }
+            })()
+            console.log(car.price(5));
+            console.log(car.yd(true));
+
+        })
+       
+        
+    </script>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</body>
+</html>

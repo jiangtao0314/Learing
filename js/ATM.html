@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head> 
+        <meta charset="UTF-8">
+        <style type="text/css"></style>
+        <script>
+            var money = 100;
+            var menu = '';
+            while(true){
+                menu = prompt('请输入您要的操作：\n 1.存钱 \n 2.取钱\n 3.显示余额\n 4.退出\n');
+                if(menu == 1){
+                    var save = prompt('请输入您要存的钱数');
+                    money += parseFloat(save);
+                    alert('您的余额为' + money);
+                    continue;
+                }else if(menu == 2 ){
+                    var load = prompt('请输入您要取的钱数');
+                    if(load > money){
+                        alert('您的余额不足，无法取款');
+                    }else{
+                     money -= load;
+                     alert('您的余额为' + money);
+                    }
+                     continue;
+                }else if(menu == 3 ){
+                    alert('您的余额为' + money);
+                    continue;
+                }else if (menu == 4){
+                    break;
+                }else{
+                    alert('请正确输入');
+                }
+            }
+            alert('您已经退出');
+        </script>  
+        <title>1111</title>
+    </head>
+    <body>
+        
+    </body>
+</html>

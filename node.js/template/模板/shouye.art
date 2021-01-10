@@ -1,0 +1,6 @@
+{{extend './gujia.art'}}
+
+{{block 'content'}} 
+<h1> 123 </h1>
+<p> {{time}} </p>
+ {{/block}}

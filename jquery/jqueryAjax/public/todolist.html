@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="./js/nprogress/nprogress.css">
+    <style>
+        .checkli {
+            height: 40px;
+            width: 40px;
+            position: absolute;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="todoapp">
+        <header class="header">
+            <h1>todos</h1>
+            <input type="text" class="new-todo" placeholder="What needs to be done?" autofocus id="task">
+        </header>
+        <!-- This section should be hidden by default and shown when there are todos -->
+        <section class="main">
+            <input class="toggle-all" type="checkbox">
+            <ul class="todo-list" id="todo-list"></ul>
+        </section>
+        <!-- This footer should hidden by default and shown when there are todos -->
+        <footer class="footer">
+            <!-- This should be `0 items left` by default -->
+            <span class="todo-count"><strong id="count">0</strong> item left</span>
+            <!-- Remove this if you don't implement routing -->
+            <ul class="filters">
+                <li>
+                    <a class="selected" href="javascript:;">All</a>
+                </li>
+                <li>
+                    <a href="javascript:;">Active</a>
+                </li>
+                <li>
+                    <a href="javascript:;">Completed</a>
+                </li>
+            </ul>
+            <!-- Hidden if no completed items are left ↓ -->
+            <button class="clear-completed">Clear completed</button>
+        </footer>
+    </section>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/template-web.js"></script>
+    <script src="./js/nprogress/nprogress.js"></script>
+
+    <script type="text/html" id='taskTpl'>
+        {{each tasks}}
+        <li class="{{$value.completed?'completed':''}}">
+            <div class="view">
+                <input class="checkli" type="checkbox" {{$value.completed? 'checked': ''}}>
+                <label>{{$value.title}}</label>
+                <!-- 设置自定义属性把id存放在自定义属性中 -->
+                <button class="destroy" dataid="{{$value._id}}"></button>
+            </div>
+            <input class="edit" value="Rule the web">
+        </li>
+        {{/each}}
+    </script>
+
+    <script>
+        //用于存放任务列表的数组
+        var taskAry = [];
+        var taskBox = document.querySelector('#todo-list');
+        var i = false;
+
+
+        function F5ajax() {
+            $.ajax({
+                url: '/todo/task',
+                type: 'get',
+                success: function(response) {
+                    taskAry = response;
+
+                    var html = template('taskTpl', {
+                        tasks: taskAry
+                    })
+                    document.querySelector('.todo-list').innerHTML = html
+                    calcCount()
+                    i = false
+                }
+            })
+
+        }
+        //向服务器端发送请求 获取已经存在的任务
+        if (i == false) {
+            i = true
+            F5ajax()
+        }
+
+
+        //键盘抬起事件
+        var task = document.querySelector('#task');
+        task.addEventListener('keyup', function(e) {
+                if (e.keyCode == 13 && this.value.trim() != '') {
+                    $.ajax({
+                        url: '/todo/addTask',
+                        type: 'post',
+                        data: {
+                            title: this.value,
+                            completed: false
+                        },
+                        success: function(response) {
+                            if (i == false) {
+                                i = true
+                                F5ajax()
+                            }
+
+                        }
+                    })
+                    this.value = ''
+                }
+
+            })
+            //利用事件委托冒泡获取到动态创建的li
+        taskBox.addEventListener('click', function(e) {
+            if (e.target.className == 'destroy') {
+                console.log(e.target.getAttribute('dataid'));
+                $.ajax({
+                    url: '/todo/removeTask',
+                    type: 'get',
+                    data: {
+                        // 读取自定义属性获取id
+                        _id: e.target.getAttribute('dataid')
+                    },
+                    success: function(response) {
+                        if (i == false) {
+                            i = true
+                            F5ajax()
+                        }
+
+                    }
+                })
+            }
+        })
+
+        //点击改变复选框状态时触发  已完成和未完成
+        taskBox.addEventListener('change', function(e) {
+            if (e.target.nextElementSibling) {
+                //查看有没有checked属性
+                var tasksBox = e.target.checked ? true : false;
+                //获取当前点击任务的id
+                var targets = e.target.nextElementSibling.nextElementSibling.getAttribute('dataid');
+                $.ajax({
+                    url: '/todo/modifyTask',
+                    type: 'post',
+                    data: {
+                        // 读取自定义属性获取id
+                        _id: targets,
+                        completed: tasksBox
+                    },
+                    success: function(response) {
+                        if (i == false) {
+                            i = true
+                            F5ajax()
+                        }
+
+                    }
+                })
+            }
+
+        })
+
+        //修改任务名称
+        taskBox.addEventListener('dblclick', function(e) {
+                e.target.parentNode.parentNode.className = 'editing';
+                //将任务名称显示在文本框中
+                e.target.parentNode.nextElementSibling.value = e.target.innerText;
+                //文本框自动获取焦点
+                e.target.parentNode.nextElementSibling.focus();
+                var edit = document.querySelector('.edit')
+
+
+            })
+            // 文本框离开焦点的时候
+        $("#todo-list").on('blur', '.edit', function() {
+                var newTaskName = this.value;
+                //编辑任务的id
+                var id = this.previousElementSibling.children[2].getAttribute('dataid');
+                console.log(id);
+                console.log(newTaskName);
+                $.ajax({
+                    url: '/todo/modifyTask2',
+                    type: 'post',
+                    data: {
+                        // 读取自定义属性获取id
+                        _id: id,
+                        title: newTaskName
+                    },
+                    success: function(response) {
+                        console.log(1);
+                        if (i == false) {
+                            i = true
+                            F5ajax()
+                        }
+
+                    }
+                })
+            })
+            // e.target.addEventListener('blur', function() {
+            //     var newTaskName = this.value;
+            //     //编辑任务的id
+            //     var id = this.previousElementSibling.children[2].getAttribute('dataid');
+            //     console.log(id);
+            //     console.log(newTaskName);
+            //     $.ajax({
+            //         url: '/todo/modifyTask2',
+            //         type: 'post',
+            //         data: {
+            //             // 读取自定义属性获取id
+            //             _id: id,
+            //             title: newTaskName
+            //         },
+            //         success: function(response) {
+            //             console.log(1);
+            //             F5ajax();
+            //         }
+            //     })
+            // })
+
+        //计算未完成任务的数量
+        function calcCount() {
+            var count = 0;
+            var newAry = taskAry.forEach(function(value, index, array) {
+                if (value.completed == false) {
+                    count++;
+                }
+                document.querySelector('#count').innerText = count;
+                return count;
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0 auto;
+        max-width: 1024px;
+    }
+    
+    .bg-danger {
+        background-color: pink;
+    }
+    
+    .bg-true {
+        background-color: rgb(106, 231, 106);
+    }
+    
+    .email {
+        height: 20px;
+        width: 80%;
+        float: left;
+        margin-top: 10px;
+    }
+    
+    .emails {
+        margin-top: 50px;
+    }
+</style>
+<script src="./js/ajax.js"></script>
+
+<body>
+    <div class="emails">
+        <h6>邮箱地址</h6>
+        <input type="text" class="email" placeholder="请输入邮箱地址">
+        <p id="info" class="emails"></p>
+    </div>
+</body>
+<script>
+    var emailInp = document.querySelector('.email');
+    var info = document.querySelector('#info');
+    var reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
+
+    emailInp.addEventListener('blur', function() {
+        var email = this.value;
+        console.log(email);
+        if (!reg.test(email)) {
+            info.className = 'emails bg-danger';
+            info.innerHTML = '请输入正确的邮箱地址'
+            return;
+        }
+        ajax({
+            type: 'get',
+            url: 'http://localhost:27017/verifyEmailAdress',
+            json: {
+                email: email
+            },
+            data: `email=${email}`,
+            success: function(result) {
+                console.log(result);
+                info.innerHTML = result;
+                info.className = 'emails bg-true'
+            },
+            error: function(error) {
+                console.log(error);
+                info.innerHTML = error;
+                info.className = 'emails bg-danger'
+            }
+        })
+    })
+</script>
+
+</html>

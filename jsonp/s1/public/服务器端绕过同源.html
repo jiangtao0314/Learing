@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    点击发送请求
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id='btn'>点我发送请求</button>
+    <!-- 将非同源服务器端的请求地址写在script标签的src属性中 -->
+    <script src="./js/ajax.js"></script>
+    <script>
+        var btn = document.querySelector('#btn');
+        btn.addEventListener('click', function() {
+            ajax({
+                type: 'get',
+                url: 'http://localhost:5000/server',
+                success: function(data) {
+                    console.log(data);
+                }
+            })
+        })
+    </script>
+
+</body>
+
+</html>

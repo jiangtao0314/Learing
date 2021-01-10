@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/bmap.min.js"></script>
+    <style>
+        .zhu {
+            height: 400px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zhu"></div>
+</body>
+<script>
+    let data = [{
+        name: "淘宝",
+        value: 11231,
+        itemStyle: {
+            //控制淘宝这一区域的样式
+            color: 'yellow'
+        },
+        label: {
+            color: 'black'
+        }
+    }, {
+        name: "京东",
+        value: 22673,
+    }, {
+        name: "唯美会",
+        value: 6123
+    }, {
+        name: "一号店",
+        value: 8989
+    }, {
+        name: "聚美优品",
+        value: 6700
+    }]
+    let mCharts = echarts.init(document.querySelector('.zhu'))
+    let option = {
+        series: {
+            type: 'pie',
+            data,
+            label: {
+                show: true, //是否显示文字
+                formatter(arg) { //显示数值
+                    console.log(arg);
+                    return arg.data.name + '    ' + arg.data.value + '元 \n' + arg.percent + '%'
+                },
+            },
+            // radius: '20'  //饼图的半径
+            // radius: '20%' //百分比参照的使宽度和高度中较小的那一部分的一半来进行百分比设置
+            // radius: ['50%', '75%'] //空心圆环 第0个元素代表内圆的半径 第一个元素为外圆的半径
+
+            roseType: 'radius', //南丁格尔图  根据占比不同半径的尺寸也不同
+
+            // selectedMode: 'single'  //当前点击项分离 其他点击项回正
+            selectedMode: 'multiple', //所有点击项全部分离
+            selectedOffset: 30, //设置分离距离
+
+        }
+    };
+    mCharts.setOption(option)
+</script>
+
+</html>

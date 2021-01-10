@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div img {
+            width: 300px;
+        }
+        
+        div {
+            width: 500px;
+            border: 1px solid black;
+        }
+        
+        div button {
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="./aimiliya.jpg" alt="">
+        <button class='full'>全屏显示</button>
+        <button class='ancel'>取消全屏</button>
+        <button class='screenFull'>判断</button>
+    </div>
+
+    <script>
+        var div = document.querySelector('div');
+        var btnFull = document.querySelector('.full');
+        btnFull.addEventListener('click', function() {
+            if (div.RequestFullscreen) {
+                div.RequestFullscreen();
+            } else if (div.webkitRequestFullscreen) {
+                div.webkitRequestFullscreen()
+            } else if (mozRequestFullscreen) {
+                div.mozRequestFullscreen()
+            }
+        })
+    </script>
+</body>
+
+</html>

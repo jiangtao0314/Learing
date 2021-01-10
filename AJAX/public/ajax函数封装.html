@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="#" />;
+</head>
+
+<body>
+
+</body>
+<script>
+    function ajax(options) {
+
+        //存储默认值
+        var defaults = {
+            type: 'get',
+            url: '',
+            header: {
+                'Content-Type': 'application/json'
+            },
+            success: function() {},
+            error: function() {}
+        }
+
+        //浅拷贝
+        Object.assign(defaults, options);
+
+        var xhr = new XMLHttpRequest();
+        //拼接参数变量  将json对象转换为字符串格式
+        // var params = '';
+        // for (var attr in defaults.json) {
+        //     params += attr + '=' + options.data[attr] + '&'
+        //         //对象后面不能点变量 把点换成中括号    
+        // }
+
+        // params = params.substr(0, params.length - 1)
+
+        // if (defaults.type == 'get') {
+        //     defaults.url = defaults.url + '?' + params;
+        // }
+        if (defaults.type == 'get') {
+            defaults.url = defaults.url + '?' + defaults.data
+        }
+        xhr.open(defaults.type, defaults.url);
+        //如果请求方式等于post
+        if (defaults.type == 'post') {
+            //设置请求参数格式的类型
+            var contentType = defaults.header['Content-Type']
+            xhr.setRequestHeader('Content-Type', contentType)
+
+            //判断传递类型是否为json
+            if (contentType == 'application/json') {
+                xhr.send(JSON.stringify(defaults.json))
+            } else {
+                xhr.send(defaults.data);
+            }
+
+        } else {
+            xhr.send();
+        }
+        xhr.addEventListener('load', function() {
+
+            //xhr.getResponseHeader()
+            //获取响应头中的数据
+            var contentType = xhr.getResponseHeader('Content-Type');
+
+            //接收服务端返回的数据
+            var responseText = xhr.responseText;
+
+            //判断字符串是否包含json includes是ES6方法
+            if (contentType.includes('application/json')) {
+                //把返回的JSON字符串类型转换为JSON对象
+                responseText = JSON.parse(responseText);
+            }
+
+
+            //当http状态码等于200的时候
+            if (xhr.status == 200) {
+                //请求成功调用处理成功的函数
+                defaults.success(responseText, xhr);
+            } else {
+                //请求失败
+                defaults.error(responseText, xhr);
+            }
+
+        })
+    }
+
+    //自己采用的方法是直接传入两个实参  需要哪个请求就用哪个实参
+    //如只能传递一个 可以只传递json实参 在函数内部转换为字符串
+    ajax({
+        type: 'get',
+        url: 'http://localhost:3000/responseData',
+        json: {
+            name: '张三',
+            age: 18,
+            sex: '男'
+        },
+        data: 'name=张三&age=18&sex=男',
+        header: {
+            // 'Content-Type':'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(data) {
+            console.log('error' + data);
+            console.log(xhr);
+        }
+
+    })
+</script>
+
+</html>

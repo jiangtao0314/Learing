@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- 把父元素的num1和num2赋值给子元素number1 2 并且绑定了子元素的自定义事件执行父元素的事件 -->
+        <cpn 
+        v-bind:number1 = "num1"
+        v-bind:number2 = "num2"
+        @num1change = "num1change" @num2change = "num2change"
+        ></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>{{number1}}</h2>
+            <h2>{{dnumber1}}</h2>
+            <input type="number" @input = "inputchange1" v-model = "dnumber1">
+            <h2>{{number2}}</h2>
+            <h2>{{dnumber2}}</h2>
+            <input type="number" @input = "inputchange2" v-model = "dnumber2">
+        </div>
+    </template>
+
+    <script>
+        const cpn = {
+            template:'#cpn',
+            props:{
+                //v-model无法直接绑定props传送到父组件的变量number
+                number1:Number,
+                number2:Number,
+            },
+            data(){
+                return{
+                    // 需要在data中重新定义dnumber 使用v-model绑定dnumber
+                    dnumber1:this.number1,
+                    dnumber2:this.number2
+                }
+            },
+            methods: {
+                //修改表单时Input的value从子组件传入到父组件
+                inputchange1(event){
+                    this.dnumber1 = event.target.value
+                    this.$emit('num1change',this.dnumber1)
+                },
+                inputchange2(event){
+                    this.dnumber2 = event.target.value
+                    this.$emit('num2change',this.dnumber2)
+                }
+            },
+        }
+
+        var app = new Vue({
+             el:'.app',
+             data:{
+                num1:0,
+                num2:0,
+             },
+             components:{
+                 cpn
+             },
+             methods: {
+                 //子元素传递过来的Number为字符串数据格式  需要转换
+                num1change(number1){
+                    this.num1 = number1-0
+                },
+                num2change(number2){
+                    this.num2 = number2-0
+                }
+             },
+        })
+    </script>
+</body> 
+</html>

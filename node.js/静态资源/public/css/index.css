@@ -1,0 +1,278 @@
+body{
+    max-width: 540px;
+    min-width: 320px;
+    font-size: 10px;
+    background-color: #f2f2f2f2;
+    margin: 0 auto;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    line-height: 1.5em;
+
+    height: 2000px;
+    box-sizing: border-box;
+}
+*{  
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #333333;
+}
+.search{
+    max-width: 540px;
+    min-width: 320px;
+    height: 44px;
+    width: 100%;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    font-size: 10px;
+    z-index: 99;
+}
+.mysearch{
+    margin-right: 5px;
+    
+}
+.mysearch div{
+    height: 22px;
+    width: 22px;
+    background: url(../images/sprite.png) no-repeat -59px -195px;
+    background-size: 104px 328px;
+}
+.searchicon{
+    height: 13px;
+    width: 12px;
+    background: url(../images/sprite.png) no-repeat -60px -280px;
+    background-size: 104px 328px;
+    position: absolute;
+    top: 15px;
+    left: 9px;
+}
+.search input{
+    flex: 1;
+    box-sizing: border-box;
+    margin: 10px 5px;
+    padding-left: 17px;
+    border: 1px solid #999999;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    border-radius: 5px;
+}
+/* ------------------------------------------------------- */
+/* 轮播图样式 */
+.focus{
+    overflow: hidden;
+    position: relative;
+    padding-top: 45px;
+}
+.focus ul{
+    margin-left: -100%;
+    overflow: hidden;
+    width: 500%;
+}
+.focus ul li{
+    width: 20%;
+    float: left;
+}
+.focus img{
+    width: 100%;
+}
+.dot .current{
+    background-color: white;
+    border-radius: 10px;
+    width: 16px;
+}
+.focus .dot{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.dot li{
+    background: rgba(255, 255, 255, .5);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    float: left;
+    margin: 0 2px;
+}
+/* //--------------------------------------------------- */
+.focus li{
+    flex: 1;
+    color: white;
+}
+.local-nav{
+    margin: 3px auto;
+    overflow-y: hidden;
+    display: flex;
+    height: 64px;
+    width: 99%;
+    border-radius: 5px;
+    background-color: white;
+    
+}
+.local-nav a{
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.local-nav a [class ^= "local-nav-icon"]{
+    height: 32px;
+    width: 32px;
+    background: url(../images/localnav_bg.png) no-repeat 0px 0px;
+    background-size: 32px auto;
+}
+.local-nav a .local-nav-icon-icon2{
+    background-position: 0px -32px;
+}
+.local-nav  a .local-nav-icon-icon3{
+    background-position: 0px -64px;
+}
+.local-nav a .local-nav-icon-icon4{
+    background-position: 0px -96px;
+}
+.local-nav a .local-nav-icon-icon5{
+    background-position: 0px -128px;
+}
+
+nav{
+    border-radius: 8px;
+    overflow: hidden;
+    height: 270px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    width: 99%;
+    display: flex;
+    margin: 2px auto 0;
+    
+}
+nav>div{
+    background-color: salmon;
+    margin-top: 2px;
+    height: 88px;
+    width: 100%; 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav div span{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+nav div span a{
+    flex: 1;
+    text-align: center;
+    line-height: 44px;
+}
+nav div span:nth-child(n+2) a:first-child{
+    border-bottom: 1px solid white;
+}
+nav div span:nth-child(n+2){
+    border-left: 1px solid white;
+}
+.nav-comment1 span:first-child a{
+    background: url(../images/hotel.png) no-repeat bottom center;
+    background-size:121px auto;
+}
+.nav-comment1{
+    background: -webkit-linear-gradient(left,#fa5a56,#fa9a4d);
+}
+.nav-comment2{
+    background: -webkit-linear-gradient(left,#4b90ed,#52bbed);
+}
+.nav-comment3{
+    background: -webkit-linear-gradient(left,#36c3a8,#6bd559);
+}
+.sidebar{
+    width: 99%;
+    margin: 3px auto 3px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.sidebar ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.sidebar li{
+    flex: 20%;
+    display: flex;
+    flex-direction:column ;
+    align-items: center;
+    margin-top: 3px;
+}
+span[class ^= "sidebar-icon"]{
+    background: url(../images/subnav-bg.png) no-repeat 0 0;
+    background-size: 24px auto;
+    height: 24px;
+    width: 24px;
+}
+.sidebar .sidebar-icon-icon1{
+    background-position:0 -25px;
+}
+.sales{
+    border-top: 1px solid #666666;
+    border-bottom: 1px solid #999999;
+    height: 45px;
+    position: relative;
+}
+.sales-hd{
+    position: relative;
+}
+.sales-hd h2{
+    text-indent: -999px;
+    overflow: hidden;
+    height: 15px;
+    width: 75px;
+    background: url(../images/hot.png) no-repeat 0 -20px;
+    background-size: 79px auto;
+    position: absolute;
+    top: 14px;
+    left: 8px;
+}
+.more{
+    color: #fff;
+    line-height: 20px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    position: absolute;
+    text-align: center;
+    top: 12px;
+    right: 8px;
+    height: 20px;
+    width: 102px;
+    background: -webkit-linear-gradient(left,#ff516b,#ff6ac4);
+    padding-left: 10px;
+    padding-right: 20px;
+}
+.triangle{
+    transform: rotate(45deg);
+    height: 5px;
+    width: 5px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff ;
+    position: absolute;
+    top: 18.5px;
+    right: 25px;
+}
+.row{
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+.row a{
+    flex: 1;
+}
+.row img{
+    width: 100%;
+    vertical-align: bottom;
+}
+.row a:first-child{
+    border-right:1px solid #ccc;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <template id = "cpn">
+        <div>
+            <button v-for = "item in arr" @click = "btnclick(item)">{{item.name}}</button>
+        </div>
+    </template>
+
+    <div class="father">
+        <!-- 父组件监听子组件发送给父组件的事件 -->
+        <cpn @itemclick = "cpnclick"></cpn>
+    </div>
+    <script>
+        const cpn = {
+            template:'#cpn',
+            data(){
+                    return{
+                    arr:[
+                        {id:1,name:'手机数码'},
+                        {id:2,name:'家用家电'},
+                        {id:3,name:'电脑办公'},
+                    ]
+                }
+            },
+            methods:{
+                btnclick(item){
+                    //给父组件发送事件
+                    this.$emit('itemclick',item)
+                }
+            }
+        }
+
+        const app = new Vue({
+            el:'.father',
+            data:{
+                message:'1234'
+            },
+            components:{
+                cpn
+            }, 
+            methods:{
+                cpnclick(item){
+                    console.log(item);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

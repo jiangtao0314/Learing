@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Father(uname,age){
+            this.uname = uname;
+            this.age = age;
+        }
+        Father.prototype.Money = function(){
+            console.log(1000000);
+        }
+
+        function Son(uname,age,score){
+            Father.call(this,uname,age);
+            this.score = score;
+        }
+        // Son.prototype = Father.prototype;   //错误的写法 会让Father的原型对象随着孩子改变
+        Son.prototype = new Father('zxy',19); // 创建一个father的对象实例   让Son的原型对象等于Father的对象实例
+        Son.prototype.constructor = Son;   //此时Son的原型对象指向的是Father的构造函数  让Son的原型对象指向指回为Son
+        Son.prototype.exam = function(){
+            console.log("考试");
+        }
+        var father = new Father('123',22);  //创建一个Father对象实例并且传递参数
+        father.Money();   //调用father的Money方法
+        console.log(father);  //father.uname = 123 father.age = 22
+        console.log(Father);  //输出Father的构造函数
+        console.log(Son);     //输出Son的构造函数
+        var son = new Son('ldh',18,100);  
+        son.exam();  //调用Son的exam方法
+        //father.exam();  //  报错！   使用错误的写法会让father也会有exam这个方法
+        console.log(Son.prototype);   //输出等于Father对象实例的Son.prototype   会让这个对象实例有Son的方法和属性 但是并不影响Father本身的原型对象
+        //此时结果为Father uname = zxy age = 19 有Money方法和exam方法
+        console.log(Father.prototype);     //Father这个函数的原型对象  并没有exam方法和Score属性
+    </script> 
+</head>
+<body>
+    
+</body>
+</html>

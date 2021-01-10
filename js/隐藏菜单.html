@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang = zh-cn>
+  <meta charset="UTF-8">
+    <head>
+      <style type = text/css>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .menu{
+        width: 50px;
+        height: 80px;
+        margin: 10px auto;
+        text-align: center;
+      }
+      .blockmenu{
+        font-size: 10px;
+        background-color: yellow;
+        width: 50px;
+        height: 30px;
+        border: 1px solid red;
+        padding-top:10px ;
+      }
+      .nonemenu{
+        background-color:orange;
+        width: 50px;
+        height: 50px;
+        font-size: 10px;
+        padding: 5px auto;
+        border: 1px solid black;
+        display: none;
+      }
+      </style>
+        
+        <title>1</title>
+    </head>
+    <body>
+      <div class="menu">
+        <div class = "blockmenu">
+          ↓菜单
+        </div>
+        <div class = "nonemenu">
+          私信<br>
+          评论<br>
+          @我<br>
+        </div>
+    </div>
+     
+      <script> 
+           var allMenu = document.querySelector('.menu').querySelectorAll('div');
+           var noneMenu = document.querySelector('.nonemenu');
+           var blockMenu = document.querySelector('.blockmenu');
+           blockMenu.onmouseover = function(){
+             noneMenu.style.display = 'block';
+           }
+           noneMenu.onmouseout = function(){
+             noneMenu.style.display = 'none';
+           }
+           console.log(allMenu);
+           
+      </script>
+    </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .imgbody{
+            position: relative;
+            top: -350px;
+            left: 500px;
+        }
+        .spimg{
+            height: 400px;
+            width: 400px;
+            border: 1px solid #999999;
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+        .big{
+            display: none;
+            height: 500px;
+            width: 500px;
+            border: 1px solid #999999;
+            overflow: hidden;
+            position: absolute;
+        }
+        .bigimg{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .yellow{
+            display: none;
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: yellow;
+            cursor:move;
+            opacity: .5;
+        }
+    </style>
+    <title>Document</title>
+    <script>
+        window.addEventListener('load',function(){
+            var moves = document.querySelector('.yellow');
+            var bigimg = document.querySelector('.big');
+            var spimg = document.querySelector('.spimg');
+
+            var bigmove = document.querySelector('.bigimg')
+            
+            spimg.addEventListener('mouseover',function(){
+                moves.style.display = 'block';
+                bigimg.style.display = 'block';
+            });
+            spimg.addEventListener('mouseout',function(){
+                moves.style.display = 'none';
+                bigimg.style.display = 'none';
+            });
+            spimg.addEventListener('mousemove',function(e){
+                    var hcha = spimg.offsetHeight - moves.offsetHeight;
+                    var lrcha = spimg.offsetWidth - moves.offsetWidth;
+                    //遮挡层最大移动距离 用商品图片的高度宽度减遮挡层的高度宽度
+                    var x = e.pageX - spimg.offsetLeft;
+                    var y = e.pageY - spimg.offsetTop;
+                    //鼠标在盒子内的XY轴
+                    var maskX = x - moves.offsetWidth/2;
+                    var maskY = y - moves.offsetHeight/2;
+                    //遮挡层的移动距离 用鼠标移动减去盒子高度、宽度 除以2 鼠标在中间
+                    if(maskX <= 0){
+                        maskX = 0;
+                    }else if(maskX >= lrcha){
+                        maskX = lrcha;
+                    }
+                    if(maskY <= 0){
+                        maskY = 0;
+                    }else if(maskY >= hcha){
+                        maskY = hcha;
+                    }
+                    moves.style.top = maskY + 'px';
+                    moves.style.left = maskX + 'px';
+
+                     // 2/4 = X/6   X = 2 X 6 / 4    
+//遮挡层移动距离/ 遮挡层的最大移动距离 =大图片的移动距离/大图片最大移动距离
+// 3. 大图片的移动距离 = 遮挡层移动距离 * 大图片最大移动距离 / 遮挡层的最大移动距离
+            var bigMax =  bigmove.offsetWidth - bigimg.offsetWidth;
+            //图片宽度减div宽度 最大移动距离
+            var bigX = maskX * bigMax / lrcha
+            var bigY = maskY * bigMax / hcha
+            //大图片移动距离XY 
+            bigmove.style.left = -bigX + 'px';
+            bigmove.style.top = -bigY + 'px';    
+            //两个移动是相反的 所以需要﹣号
+
+                });
+        });
+    </script>
+</head>
+<body>
+    <div class="spimg">
+        <img src="images/s3.png" alt="">
+        <div class="yellow">
+        </div>
+    </div>
+
+
+
+    <div class = 'imgbody'>
+        <div class="big">
+            <img src="images/big.jpg" alt="" class = 'bigimg'>
+        </div>
+    </div>
+        
+   
+</body>
+</html>

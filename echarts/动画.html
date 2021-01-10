@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/bmap.min.js"></script>
+    <style>
+        .zhu {
+            height: 400px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zhu"></div>
+    <button class="edit">修改</button>
+    <button class="add">添加</button>
+</body>
+<script>
+    let data = [{
+        name: "淘宝",
+        value: 11231,
+        itemStyle: {
+            //控制淘宝这一区域的样式
+            color: 'yellow'
+        },
+        label: {
+            color: 'black'
+        }
+    }, {
+        name: "京东",
+        value: 22673,
+    }, {
+        name: "唯美会",
+        value: 6123
+    }, {
+        name: "一号店",
+        value: 8989
+    }, {
+        name: "聚美优品",
+        value: 6700
+    }]
+    let add = document.querySelector('.add');
+    let edit = document.querySelector('.edit')
+    let mCharts = echarts.init(document.querySelector('.zhu'))
+    let option = {
+
+        // 动画常用配置
+        animation: true, //是否开启动画
+        animationDuration: 3000, //动画的时长  毫秒
+        // animationDuration: function(arg) {
+        //     console.log(arg);
+        //     return 1000 * arg
+        // },
+
+        // 动画运动曲线
+        animationEasing: 'bounceOut',
+        //动画阈值  小于10开启动画 大于10关闭
+        animationThreshold: 10,
+
+
+
+        series: {
+            type: 'pie',
+            data,
+            label: {
+                show: true, //是否显示文字
+                formatter(arg) { //显示数值
+                    return arg.data.name + '    ' + arg.data.value + '元 \n' + arg.percent + '%'
+                },
+            },
+            selectedMode: 'multiple', //所有点击项全部分离
+            selectedOffset: 30, //设置分离距离
+
+        }
+    };
+    mCharts.setOption(option)
+
+    add.addEventListener('click', () => {
+        data.push({
+                name: '拼多多',
+                value: 17869
+            })
+            // 新的option和旧的option不是相互覆盖 而是相互整合的关系
+            //在设置时只需要考虑变化的部分就可以
+        option = {
+                series: {
+                    data,
+                }
+            }
+            // setOption可以设置多次 
+        mCharts.setOption(option)
+    })
+
+    edit.addEventListener('click', () => {
+        data[0].value = 30000
+        option = {
+            series: {
+                data,
+            }
+        }
+        mCharts.setOption(option)
+    })
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name = "username" id = "username">
+    <input type="text" name = "age" id = "age">
+    <input type="button" id = "btn" value = "提交">
+</body>
+    <script>
+        let btnname = document.querySelector('#username');
+        let btnage = document.querySelector('#age');
+        let btn = document.querySelector('#btn');
+        btn.addEventListener('click',()=>{
+            var namevalue = btnname.value;
+            var agevalue = btnage.value;
+            var htp = `username=${namevalue}&age=${agevalue}`
+            var xhr = new XMLHttpRequest();
+            xhr.open('post','http://localhost:3000/post');
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+            xhr.send(htp);
+            xhr.addEventListener('load',()=>{
+                console.log(xhr.responseText);
+            })
+        })
+        var xhr = new XMLHttpRequest();
+        xhr.open('post','http://localhost:3000/json')
+        xhr.setRequestHeader('Content-Type','application/json');
+        xhr.send(JSON.stringify({name:'张三',age:'18',sex:'男'}));
+        xhr.addEventListener('load',()=>{
+            console.log(xhr.responseText);
+        })
+    </script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/bmap.min.js"></script>
+    <style>
+        .zhu {
+            height: 400px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zhu"></div>
+</body>
+<script>
+    let data = [{
+        "height": 161,
+        "weight": 51
+    }, {
+        "height": 170,
+        "weight": 67
+    }, {
+        "height": 151,
+        "weight": 43
+    }, {
+        "height": 181,
+        "weight": 63
+    }, {
+        "height": 124,
+        "weight": 50
+    }, {
+        "height": 166,
+        "weight": 58
+    }]
+    let arrdata = [];
+
+    data.forEach((item) => {
+        arrdata.push([item.height, item.weight]);
+    })
+
+    let mCharts = echarts.init(document.querySelector('.zhu'))
+    let option = {
+        xAxis: {
+            type: 'value',
+        },
+        yAxis: {
+            type: 'value' //数值轴
+        },
+        series: [{
+            data: arrdata,
+            // type: 'scatter',
+            type: 'effectScatter', //涟漪动画
+            showEffectOn: 'emphasis', //rend8er自动添加涟漪动画  emphasis鼠标移动添加涟漪动画
+            rippleEffect: {
+                scale: 4 //涟漪动画的范围  数字越大范围越大
+            },
+
+            // 根据数值配置散点不同大小
+            symbolSize: function(arg) {
+                // arg返回的是二维数组中各个值
+                let height = arg[0] / 100;
+                let weight = arg[1]
+                    //肥胖公式  return数字越大 散点数越大
+                if (weight / (height * height) > 28) {
+                    return 10
+                } else {
+                    return 5
+                }
+            },
+            // 根据数值配置散点不同颜色
+            itemStyle: {
+                color: function(arg) {
+                    var height = arg.data[0] / 100
+                    var weight = arg.data[1]
+                    if (weight / (height * height) > 28) {
+                        return 'pink'
+                    } else {
+                        return 'blue'
+                    }
+                }
+            }
+        }]
+    };
+    mCharts.setOption(option)
+</script>
+
+</html>

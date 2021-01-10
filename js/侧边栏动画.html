@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       .sliderbar{
+           background-color: purple;
+           position:fixed;
+           right: 0;
+           bottom: 200px;
+           height: 40px;
+           width: 40px;
+           text-align: center;
+           color: #fff;
+           line-height: 40px;
+           cursor: pointer;
+       }
+       .con{
+            background-color: purple;
+           height: 40px;
+           width: 200px;
+           position: absolute;
+           left: 0;
+            top: 0;
+            z-index: -1;
+       }
+    </style>
+    <script>
+        window.addEventListener('load',function(){
+            var sliderbar = document.querySelector('.sliderbar');
+            var con = document.querySelector('.con');
+            
+            function animent(obj,target,callback){
+                clearInterval(obj.timer); //清除之前的定时器
+               obj.timer = setInterval(function(){
+                    var step = (target - obj.offsetLeft)/10; //缓动效果公式
+                    step = step > 0 ? Math.ceil(step):Math.floor(step); //判断是否大于0并取整
+                    if(obj.offsetLeft == target){   //如果到达指定位置清楚定时器
+                        clearInterval(obj.timer)
+                        if(callback){    //定时器结束后调用回调函数
+                            callback();
+                        }
+                    }
+                    obj.style.left = obj.offsetLeft + step + 'px'; //移动的位置
+                },15);
+            };
+
+
+
+            sliderbar.addEventListener('mouseenter',function(){
+            animent(con,-160,function(){
+                sliderbar.children[0].innerHTML = '>';
+            });             //调用 回调函数
+        });
+        sliderbar.addEventListener('mouseleave',function(){
+            animent(con,0,function(){
+                sliderbar.children[0].innerHTML = '<';
+            });
+        });
+
+
+
+
+        });
+        
+    </script>
+</head>
+    
+<body>
+        <div class="sliderbar">
+            <span> &lt; </span>
+            <div class="con">
+                问题反馈
+            </div>
+        </div>
+</body>
+
+</html>

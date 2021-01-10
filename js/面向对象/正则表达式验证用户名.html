@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: #999999;
+        }
+        .right{
+            color: green;
+        }
+        .worng{
+            color: red;
+        }
+    </style>
+    <script>
+        window.addEventListener('load',function(){
+            var sg = /^[a-zA-Z0-9_-]{6,8}$/
+            var input = document.querySelector('input');
+            var span = document.querySelector('span');
+            input.addEventListener('blur',function(){
+                var i = sg.test(input.value)
+                if(i){
+                    span.innerHTML = '用户名格式正确';
+                    span.className = 'right';
+                }else{
+                    span.innerHTML = '用户名格式错误';
+                    span.className = 'worng';
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <input type="text"> <span>请输入用户名</span>
+</body>
+</html>

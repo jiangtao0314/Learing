@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang = zh-cn>
+    <head>
+        <style type = text/css></style>
+        <script>
+            var num = 0,
+                num2 = 0;
+            for(var i = 1; jisuanqi != 5; i++){
+                var jisuanqi = parseInt(prompt('欢迎使用简易计算器:\n1.加法运算\n2.减法运算\n3.乘法运算\n4.除法运算\n5.退出\n请输入您的选项:'));
+           switch(jisuanqi){
+                case 1:
+                num = parseInt(prompt('请输入第一个数'));
+                num2 = parseInt(prompt('请输入第二个数'));
+                alert(num+num2);
+                continue;
+                case 2:
+                num = parseInt(prompt('请输入第一个数'));
+                num2 = parseInt(prompt('请输入第二个数'));
+                alert(num-num2);
+                continue;
+                case 3:
+                num = parseInt(prompt('请输入第一个数'));
+                num2 = parseInt(prompt('请输入第二个数'));
+                alert(num*num2);
+                continue;
+                case 4:
+                num = parseInt(prompt('请输入第一个数'));
+                num2 = parseInt(prompt('请输入第二个数'));
+                alert(num/num2);
+                continue;
+                case 5:
+                alert('您已退出');
+                break;
+           }
+            }
+           
+        </script>
+        <title>1</title>
+    </head>
+    <body>
+        
+    </body>
+</html>

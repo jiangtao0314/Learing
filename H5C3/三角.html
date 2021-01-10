@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #999999;
+        }
+        nav div{
+            height: 200px;
+            width: 200px;
+            position: relative;
+            background-color: thistle;
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+        nav span{
+            height: 0;
+            width: 0;
+            border: 10px solid transparent;
+            border-bottom-color: white;
+            line-height: 0;
+            font-size: 0;
+            position: absolute;
+            right: 20px;
+            top:-20px;
+        }
+
+        article div{
+            height: 20px;
+            width: 100px;
+            position: relative;
+            background-color: red;
+            margin-top: 50px;
+            float: left;
+        }
+        article span{
+            height: 0;
+            width: 0;
+            line-height: 0;
+            font-size: 0;
+            position: absolute;
+            border-top:20px solid transparent ;
+            border-bottom: 0;
+            border-right: 10px solid white;
+            border-left: 0;
+            top: 0;
+            right:0;
+        }
+        .two{
+            height: 20px;
+            width: 100px;
+            background-color: white;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <span></span>
+        </div>
+    </nav>
+    <article>
+        <div>
+            <span></span>
+        </div>
+        <div class="two">
+
+        </div>
+    </article>
+</body>
+</html>

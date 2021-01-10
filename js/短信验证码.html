@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="values">手机号：</span>
+        <input type="number" maxlength="11" class="phoneinput">
+        <button class="phoneget">发送</button>
+    </div>
+
+    <script>
+        var phoneNumber = document.querySelector('.phoneinput');
+        var phoneGet = document.querySelector('.phoneget');
+        var time = 3;
+        phoneGet.addEventListener('click', function() {
+            var phoneTime = setInterval(function() {
+                if (time == 0) {
+                    phoneGet.disabled = false;
+                    phoneGet.innerHTML = '发送';
+                    time = 3;
+                    clearInterval(phoneTime);
+                } else {
+                    phoneGet.innerHTML = '还剩下' + time + '秒';
+                    phoneGet.disabled = true;
+                    time--;
+                }
+            }, 1000)
+        })
+    </script>
+</body>
+
+</html>

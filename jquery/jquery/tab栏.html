@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        div {
+            position: relative;
+            top: 200px;
+            left: 400px;
+            height: 250px;
+        }
+        ul{
+            height: 250px;
+        }
+        ul li{
+            border: 1px solid black;
+            background-color: coral;
+            color: black;
+            font-size: 14px;
+            text-align: center;
+            height: 10.3%;
+            width: 60px;
+            line-height: 27.75px;
+            cursor: pointer;
+        }
+        ol li {
+            position: absolute;
+            left:62px;
+            top: 0;
+        }
+    </style>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('ul li').mouseover(function(){
+                $(this).css('background','pink');
+            })
+            $('ul li').mouseout(function(){
+                $(this).css('background','coral');
+            })
+            $('ul li').click(function(){
+               var index =  $(this).index();
+               $('ol li').eq(index).siblings('li').hide();
+               $('ol li').eq(index).show();
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>冬裙</li>
+            <li>毛衣</li>
+            <li>棉服</li>
+            <li>呢大衣</li>
+            <li>牛仔裤</li>
+            <li>女裤</li>
+            <li>女靴</li>
+            <li>雪地靴</li>
+            <li>羽绒服</li>
+        </ul>
+        <ol>
+            <li><a href="javascript:;"><img src="images/冬裙.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/毛衣.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/棉服.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/呢大衣.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/牛仔裤.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/女裤.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/女靴.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/雪地靴.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="images/羽绒服.jpg" alt=""></a></li>
+        </ol>
+    </div> 
+</body>
+</html>

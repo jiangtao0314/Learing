@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    // 防抖
+var app = function debounce(fn, wait) {    
+    let timeout = null;   
+    console.log(timeout); 
+    return function() {        
+        if(timeout !== null){
+            clearTimeout(timeout);   
+        };
+        timeout = setTimeout(fn, wait);
+        console.log(timeout);
+    }
+}
+
+// 在上面的代码中，闭包指的就是function() {        
+    //     if(timeout !== null){
+    //         clearTimeout(timeout);   
+    //     };
+    //     timeout = setTimeout(fn, wait);
+    //     console.log(timeout);    
+    // }这个函数。
+// 首先解释一下这段代码，第一个function执行了一次（执行且仅会执行一次），
+// 因为这是一个函数表达式声明方式并且声明后加上了()，所以会自动执行一次。他的返回值为：并同时把他的返回值赋值给了app function() {        
+    //     if(timeout !== null){
+    //         clearTimeout(timeout);   
+    //     };
+    //     timeout = setTimeout(fn, wait);
+    //     console.log(timeout);    
+    // }
+// 然后每次调用debounce()函数时，返回的都是这个函数，因为这个函数在第一个函数的内部，所以即使第一个函数执行完了，
+// 第二个函数依然能访问timeout（JS设计的作用域链，当前作用域能访问上级的作用域）。
+
+// 处理函数
+function handle() {    
+    console.log(Math.random()); 
+}
+// 滚动事件
+window.addEventListener('resize', app(handle, 1000));
+
+console.log(app(handle, 1000));
+
+
+
+// window.addEventListener("keyup",function(){
+//     clearTimeout(timer);
+//     timer = setTimeout(function(){
+//         console.log(1);
+//     },1000);
+// })
+
+
+    </script>
+</body>
+</html>

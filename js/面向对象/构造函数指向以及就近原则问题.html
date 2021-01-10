@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Star(uname,age){  //Star构造函数   prototype指向原型对象
+            this.uname = uname;
+            // this.age = age;  如果没有输出16
+        }
+        Star.prototype.sing = function(){
+                console.log('sing');       //Star原型对象  使用constructor指向构造函数
+            }
+        Star.prototype.age = 16;  //如果没有输出15
+
+        Object.prototype.age = 15;
+        
+           
+            var ldh = new Star('ldh',18);  //对象实例
+            // ldh.age = 17;  //以这个年龄为准  如果没有就输出18  
+            console.log(ldh.age);//查找机制按照就近原则
+            console.log(Star.prototype);  //Star构造函数   prototype指向原型对象
+            console.log(Star.prototype.constructor);//Star原型对象  使用constructor指向构造函数
+            console.log(Object);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

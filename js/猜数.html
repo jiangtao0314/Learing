@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang = zh-cn>
+    <head>
+        <style type = text/css></style>
+        <script>
+           function getRandom(max,min){
+              var myRandom = Math.floor(Math.random()*(max-min+1))+min;
+              while(true){
+                var a = parseInt(prompt('请输入一个数字'));
+                if(myRandom < a){ 
+                alert('大了');
+                continue;
+              }else if(myRandom > a){
+                alert('小了');
+                continue;
+              }else{
+                alert('正好');
+                break;
+              }
+              }
+              return a;
+           }
+           getRandom(10,1);
+           
+        </script>
+        <title>1</title>
+    </head>
+    <body>
+        
+    </body>
+</html>

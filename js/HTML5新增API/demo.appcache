@@ -1,0 +1,16 @@
+CACHE MANIFEST
+
+CACHE:
+
+./images/img1.jpg
+./images/img2.jpg
+./images/img3.jpg
+
+
+NETWORK:
+#此部分需要有网络的时候才可以访问 可以写*代表全部需要联网
+./images/img1.jpg
+
+FALLBACK:
+#当访问不到某资源情况下 使用另一个替换 两个资源中用空格隔开
+./images/img1.jpg ./images/img2.jpg

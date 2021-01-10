@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn></cpn>
+        <!-- 添加refs能识别的名字 -->
+        <cpn ref = "aaa"></cpn>
+        <cpn></cpn>
+        <button @click="btnclick">点击</button>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>我是子组件</h2>
+        </div>
+    </template>
+</body>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                message:'233',
+            },
+
+            components:{
+                cpn:{
+                    template:'#cpn',
+                methods: {
+                    showmessage(){
+                        console.log('2333');
+                    }
+                },
+                data() {
+                    return {
+                        messages:'233'
+                    }
+                }, 
+                }
+            },
+            methods: {
+                btnclick(){
+                    //$children保存的是一个数组，需要添加第几个 添加foreach循环常用于获取全部子组件参数
+                    // console.log(this.$children[0].showmessage)
+                    // console.log(this.$children[0].messages);
+
+                    // $refs最常用  可以获取指定子组件的值和方法
+                    // this.$refs.aaa.showmessage();
+                    console.log(this.$refs.aaa.messages);
+                }
+            },
+        })
+    </script>
+</html>
